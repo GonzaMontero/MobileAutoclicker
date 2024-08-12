@@ -1,3 +1,4 @@
+using Autoclicker.Scripts.Backend;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,9 +17,20 @@ namespace Autoclicker.Scripts.Utils.Localization
         {
             textField = GetComponent<TextMeshProUGUI>();
 
-            string s = "hi";
+            string s = Loc.ReplaceKey(Key);
 
             textField.text = s;
+
+            CommandManager.Get().OnSettingsChanged.AddListener(
+                () => textField.text = Loc.ReplaceKey(Key)
+            );
+        }
+
+        private void OnDestroy()
+        {
+            CommandManager.Get().OnSettingsChanged.RemoveListener(
+                () => textField.text = Loc.ReplaceKey(Key)
+            );
         }
     }
 }
