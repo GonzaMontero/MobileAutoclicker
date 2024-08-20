@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Autoclicker.Scripts.Utils.Managers;
+using UnityEngine.UI;
 
-public class IntroScreenFunctions : MonoBehaviour
+namespace Autoclicker.Scripts.Frontend.UIElements
 {
-    // Start is called before the first frame update
-    void Start()
+    public class IntroScreenFunctions : MonoBehaviour
     {
-        
-    }
+        [Header("References General")]
+        public GameObject MainMenu;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Header("References Loading Scene")]
+        public GameObject LoadingScene;
+        public Slider loadingSlider;
+
+        private bool _isLoadingScene = false;
+
+        public void LoadLevelButton(string sceneToLoad)
+        {
+            MainMenu.SetActive(false);
+            LoadingScene.SetActive(true);
+
+            ASyncLoaderManager.Get().InitiateSceneLoad(sceneToLoad);
+
+            _isLoadingScene = true;
+        }
+
+        private void Update()
+        {
+            if (_isLoadingScene)
+                loadingSlider.value = ASyncLoaderManager.Get().CurrentLoadProgress;
+        }
     }
 }

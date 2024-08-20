@@ -20,7 +20,7 @@ namespace Autoclicker.Scripts.Utils.Localization
         public static void Init()
         {
             CSVLoader CSVLoader = new CSVLoader();
-            CSVLoader.LoadCSV("localization");
+            CSVLoader.LoadCSV("Localization/localization");
 
             localisedEN = CSVLoader.GetDictionaryValues("en");
             localisedES = CSVLoader.GetDictionaryValues("spa");
