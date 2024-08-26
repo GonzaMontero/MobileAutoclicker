@@ -1232,6 +1232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cda2b9989588247b1f57cbb2967df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LanguageDropdown: {fileID: 944368644}
+  VolumeSlider: {fileID: 141915584}
 --- !u!1 &673988350
 GameObject:
   m_ObjectHideFlags: 0

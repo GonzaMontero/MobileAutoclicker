@@ -71,9 +71,23 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
         }
 
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            _playerData.CurrentLanguage = (int)Loc.CurrentLanguage;
+        }
+
+        #region Setter & Getters
         public PlayerData GetPlayerData()
         {
             return _playerData;
         }
+
+        public void SetVolume(float volume)
+        {
+            _playerData.CurrentVolume = volume;
+        }
+        #endregion
     }
 }

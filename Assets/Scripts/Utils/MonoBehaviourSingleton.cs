@@ -23,5 +23,13 @@ namespace Autoclicker.Scripts.Utils
                 Destroy(gameObject);
             }
         }
+
+        public virtual void OnDestroy()
+        {
+            if (instance != null)
+            {
+                Debug.Log(instance.name + " was destroyed successfully");
+            }
+        }
     }
 }

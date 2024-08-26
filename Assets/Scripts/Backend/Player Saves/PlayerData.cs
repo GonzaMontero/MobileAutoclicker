@@ -9,4 +9,5 @@ public class PlayerData
 
     //Settings
     public int CurrentLanguage;
+    public float CurrentVolume;
 }
