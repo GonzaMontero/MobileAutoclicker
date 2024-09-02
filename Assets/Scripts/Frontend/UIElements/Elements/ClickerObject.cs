@@ -1,4 +1,5 @@
 using Autoclicker.Scripts.Utils;
+using Autoclicker.Scripts.Utils.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,31 +13,39 @@ namespace Autoclicker.Scripts.Frontend.UIElements.Elements
     {
         [Header("References")]
         public GameObject ClickElement;
-        public InputActionReference ClickActionReference;
+        public Button ItemButton;
 
         private int goldPerClick = 1;
-        private Button thisButton;
-        private InputAction clickAction;
+        private RectTransform rectTransformCurrent;
 
         public override void Awake()
         {
             base.Awake();
 
-            clickAction = ClickActionReference.action;
-            clickAction.Enable();
+            ItemButton.onClick.AddListener(AddOnClickObject);
 
-            thisButton = GetComponent<Button>();
-            thisButton.onClick.AddListener(AddOnClickObject);
+            rectTransformCurrent = GetComponent<RectTransform>();
         }
 
         public void AddOnClickObject()
         {
-            Vector2 clickPosition = clickAction.ReadValue<Vector2>();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                rectTransformCurrent,
+                Input.mousePosition,
+                Camera.main,
+                out Vector2 localpoint
+                );
 
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(clickPosition.x, clickPosition.y, 0));
+            GameObject tempObject = Instantiate(ClickElement);
 
-            GameObject tempObject = Instantiate(ClickElement, worldPosition, Quaternion.identity, transform);
+            RectTransform tempRectTransform = tempObject.GetComponent<RectTransform>();
 
+            if (tempRectTransform != null)
+            {
+                tempRectTransform.SetParent(transform, false);
+                tempRectTransform.anchoredPosition = localpoint;
+            }
+                
             tempObject.GetComponent<OnClickElement>().Initialize("+" + goldPerClick);
         }
     }

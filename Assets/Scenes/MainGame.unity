@@ -1204,8 +1204,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475288111}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.207073, y: 443.16876, z: -6.1306715}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -56.207092, y: 443.16876, z: -6.1306715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClickElement: {fileID: 1864783829678033504, guid: c2ccf8b13c983724ebc05ef469e9d980, type: 3}
-  ClickActionReference: {fileID: 934045039623410107, guid: b76a52411eed10646841825168ac0111, type: 3}
+  ItemButton: {fileID: 777074931}
 --- !u!1 &852368261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,7 +3872,7 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 475288113}
   - {fileID: 1104871060}
   - {fileID: 2087158000}
   - {fileID: 852368264}
-  - {fileID: 475288113}
