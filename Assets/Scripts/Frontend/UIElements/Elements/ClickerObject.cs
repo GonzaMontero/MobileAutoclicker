@@ -1,3 +1,4 @@
+using Autoclicker.Scripts.Backend.PlayerSaves;
 using Autoclicker.Scripts.Utils;
 using Autoclicker.Scripts.Utils.Managers;
 using System.Collections;
@@ -23,6 +24,9 @@ namespace Autoclicker.Scripts.Frontend.UIElements.Elements
             base.Awake();
 
             ItemButton.onClick.AddListener(AddOnClickObject);
+            ItemButton.onClick.AddListener(
+                () => PlayerDataBridge.Get().GainGold(goldPerClick)
+                );
 
             rectTransformCurrent = GetComponent<RectTransform>();
         }

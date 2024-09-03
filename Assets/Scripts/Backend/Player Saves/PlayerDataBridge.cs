@@ -8,15 +8,75 @@ using System.Numerics;
 
 namespace Autoclicker.Scripts.Backend.PlayerSaves
 {
-    public class PlayerDataManager : MonoBehaviourSingleton<PlayerDataManager>
+    public class PlayerDataBridge : MonoBehaviourSingleton<PlayerDataBridge>
     {
+        private PlayerData _playerData;
+
+        public UnityEvent OnGoldGained;
+        public UnityEvent OnGoldSpent;
+        public UnityEvent OnUpgradeGained;
+
         private string _filePath;
 
         public override void Awake()
         {
             base.Awake();
+
             _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+            _playerData = LogIn();
+
+            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
+
+            if (OnGoldGained == null)
+                OnGoldGained = new UnityEvent();
+
+            if (OnGoldSpent == null)
+                OnGoldSpent = new UnityEvent();
+
+            if (OnUpgradeGained == null)
+                OnUpgradeGained = new UnityEvent();
         }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            _playerData.CurrentLanguage = (int)Loc.CurrentLanguage;
+
+            LogOut(_playerData);
+        }
+
+        #region Setter & Getters
+        public PlayerData GetPlayerData()
+        {
+            return _playerData;
+        }
+
+        public void SetVolume(float volume)
+        {
+            _playerData.CurrentVolume = volume;
+        }
+
+        public void GainGold(BigInteger goldGained)
+        {
+            _playerData.PlayerGold += goldGained;
+
+            OnGoldGained.Invoke();
+        }
+
+        public bool OnSpendGold(BigInteger goldSpent)
+        {
+            if (_playerData.PlayerGold - goldSpent < 0)
+                return false;
+
+            _playerData.PlayerGold -= goldSpent;
+            OnGoldSpent.Invoke();
+
+            return true;
+        }
+        #endregion
+
+        #region Player Data
 
         public void LogOut(PlayerData playerData)
         {
@@ -58,69 +118,7 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
 
             return new PlayerData();
         }
-    }
 
-    public class PlayerDataBridge : MonoBehaviourSingleton<PlayerDataBridge>
-    {
-        private PlayerData _playerData;
-
-        public UnityEvent OnGoldGained;
-        public UnityEvent OnGoldSpent;
-        public UnityEvent OnUpgradeGained;
-
-        public override void Awake()
-        {
-            base.Awake();
-
-            _playerData = PlayerDataManager.Get().LogIn();
-
-            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
-
-            if (OnGoldGained == null)
-                OnGoldGained = new UnityEvent();
-
-            if (OnGoldSpent == null)
-                OnGoldSpent = new UnityEvent();
-
-            if (OnUpgradeGained == null)
-                OnUpgradeGained = new UnityEvent();
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            _playerData.CurrentLanguage = (int)Loc.CurrentLanguage;
-        }
-
-        #region Setter & Getters
-        public PlayerData GetPlayerData()
-        {
-            return _playerData;
-        }
-
-        public void SetVolume(float volume)
-        {
-            _playerData.CurrentVolume = volume;
-        }
-
-        public void GainGold(BigInteger goldGained)
-        {
-            _playerData.PlayerGold += goldGained;
-
-            OnGoldGained.Invoke();
-        }
-
-        public bool OnSpendGold(BigInteger goldSpent)
-        {
-            if (_playerData.PlayerGold - goldSpent < 0)
-                return false;
-
-            _playerData.PlayerGold -= goldSpent;
-            OnGoldSpent.Invoke();
-
-            return true;
-        }
         #endregion
     }
 }
