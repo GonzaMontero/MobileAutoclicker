@@ -32,7 +32,7 @@ namespace Autoclicker.Scripts.Frontend.UIElements.Elements
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 rectTransformCurrent,
                 Input.mousePosition,
-                Camera.main,
+                null,
                 out Vector2 localpoint
                 );
 

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Numerics;
 
 [System.Serializable]
 public class PlayerData
 {
     //Game Stats
-    public int PlayerGold;
+    public BigInteger PlayerGold;
     public Dictionary<int, int> PlayerStatUpgradeDictionary;
 
     //Settings

@@ -3,6 +3,8 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Autoclicker.Scripts.Utils;
 using Autoclicker.Scripts.Utils.Localization;
+using UnityEngine.Events;
+using System.Numerics;
 
 namespace Autoclicker.Scripts.Backend.PlayerSaves
 {
@@ -62,6 +64,10 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
     {
         private PlayerData _playerData;
 
+        public UnityEvent OnGoldGained;
+        public UnityEvent OnGoldSpent;
+        public UnityEvent OnUpgradeGained;
+
         public override void Awake()
         {
             base.Awake();
@@ -69,6 +75,15 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
             _playerData = PlayerDataManager.Get().LogIn();
 
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
+
+            if (OnGoldGained == null)
+                OnGoldGained = new UnityEvent();
+
+            if (OnGoldSpent == null)
+                OnGoldSpent = new UnityEvent();
+
+            if (OnUpgradeGained == null)
+                OnUpgradeGained = new UnityEvent();
         }
 
         public override void OnDestroy()
@@ -87,6 +102,24 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
         public void SetVolume(float volume)
         {
             _playerData.CurrentVolume = volume;
+        }
+
+        public void GainGold(BigInteger goldGained)
+        {
+            _playerData.PlayerGold += goldGained;
+
+            OnGoldGained.Invoke();
+        }
+
+        public bool OnSpendGold(BigInteger goldSpent)
+        {
+            if (_playerData.PlayerGold - goldSpent < 0)
+                return false;
+
+            _playerData.PlayerGold -= goldSpent;
+            OnGoldSpent.Invoke();
+
+            return true;
         }
         #endregion
     }
