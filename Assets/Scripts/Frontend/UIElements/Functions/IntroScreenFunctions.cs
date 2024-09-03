@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Autoclicker.Scripts.Utils.Managers;
+
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Autoclicker.Scripts.Frontend.UIElements

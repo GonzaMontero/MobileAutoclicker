@@ -1,7 +1,6 @@
 using Autoclicker.Scripts.Backend;
 using Autoclicker.Scripts.Backend.PlayerSaves;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Autoclicker.Scripts.Utils.Audio

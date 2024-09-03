@@ -1,9 +1,7 @@
 using Autoclicker.Scripts.Backend.PlayerSaves;
-using Facebook.Unity;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
+using TMPro;
 
 namespace Autoclicker.Scripts.Frontend.UIElements.Elements
 {

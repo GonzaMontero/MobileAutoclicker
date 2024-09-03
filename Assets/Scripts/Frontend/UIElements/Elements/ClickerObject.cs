@@ -1,10 +1,7 @@
 using Autoclicker.Scripts.Backend.PlayerSaves;
 using Autoclicker.Scripts.Utils;
-using Autoclicker.Scripts.Utils.Managers;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Autoclicker.Scripts.Frontend.UIElements.Elements
