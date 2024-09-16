@@ -152,24 +152,5 @@ namespace Autoclicker.Scripts.Backend.Facebook
             param[AppEventParameterName.ContentID] = item;
             FB.LogAppEvent(AppEventName.SpentCredits, (float)coins, param);
         }
-
-        /*public void GetFriendsPlayingThisGame()
-        {
-            string query = "/me/friends";
-            FB.API(query, HttpMethod.GET, result =>
-            {
-                Debug.Log("the raw" + result.RawResult);
-                var dictionary = (Dictionary<string, object>)Facebook.MiniJSON.Json.Deserialize(result.RawResult);
-                var friendsList = (List<object>)dictionary["data"];
-
-                foreach (var dict in friendsList)
-                {
-                    GameObject go = Instantiate(friendstxtprefab);
-                    go.GetComponent<Text>().text = ((Dictionary<string, object>)dict)["name"].ToString();
-                    go.transform.SetParent(GetFriendsPos.transform, false);
-                    FriendsText[1].text += ((Dictionary<string, object>)dict)["name"];
-                }
-            });
-        }*/
     }
 }

@@ -5,7 +5,7 @@ using System.Numerics;
 public class PlayerData
 {
     //Game Stats
-    public BigInteger PlayerGold;
+    public List<long> PlayerGold;
     public Dictionary<int, int> PlayerStatUpgradeDictionary;
 
     //Settings

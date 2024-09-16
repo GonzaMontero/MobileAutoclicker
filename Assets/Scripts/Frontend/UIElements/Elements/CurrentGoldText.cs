@@ -27,10 +27,10 @@ namespace Autoclicker.Scripts.Frontend.UIElements.Elements
         {
             string text;
 
-            if (PlayerDataBridge.Get().GetPlayerData().PlayerGold > 10000000000)
-                text = PlayerDataBridge.Get().GetPlayerData().PlayerGold.ToString("0.000e+00");
+            if (PlayerDataBridge.Get().GetTotalGold() > 10000000000)
+                text = PlayerDataBridge.Get().GetTotalGold().ToString("0.000e+00");
             else
-                text = PlayerDataBridge.Get().GetPlayerData().PlayerGold.ToString();
+                text = PlayerDataBridge.Get().GetTotalGold().ToString();
 
             thisText.text = text;
         }

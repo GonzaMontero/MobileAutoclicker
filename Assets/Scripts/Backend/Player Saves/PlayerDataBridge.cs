@@ -5,6 +5,7 @@ using Autoclicker.Scripts.Utils;
 using Autoclicker.Scripts.Utils.Localization;
 using UnityEngine.Events;
 using System.Numerics;
+using Unity.VisualScripting;
 
 namespace Autoclicker.Scripts.Backend.PlayerSaves
 {
@@ -57,22 +58,66 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
             _playerData.CurrentVolume = volume;
         }
 
-        public void GainGold(BigInteger goldGained)
+        public void GainGold(long goldGained)
         {
-            _playerData.PlayerGold += goldGained;
+            long goldNeeds = 0;
 
-            OnGoldGained.Invoke();
+            while (goldGained > 0)
+            {
+                goldNeeds = long.MaxValue - _playerData.PlayerGold[^1]; //goldNeeds = amount of gold needed to reach the long.max value
+
+                if (goldGained - goldNeeds < 0) //if we need more gold than what we currently are gaining
+                    _playerData.PlayerGold[^1] += goldGained;
+                else                            //if we have more gold than what we need to reach long.max
+                {
+                    _playerData.PlayerGold[^1] = long.MaxValue;
+                    _playerData.PlayerGold.Add(0);
+                    goldGained -= goldNeeds;
+                }
+            }
+
+            OnGoldGained?.Invoke();
         }
 
-        public bool OnSpendGold(BigInteger goldSpent)
+        public bool OnSpendGold(long goldSpent)
         {
-            if (_playerData.PlayerGold - goldSpent < 0)
-                return false;
+            long goldNeeds = 0;
 
-            _playerData.PlayerGold -= goldSpent;
-            OnGoldSpent.Invoke();
+            goldNeeds = _playerData.PlayerGold[^1] - goldSpent;
 
-            return true;
+            if (goldNeeds > 0)
+            {
+                _playerData.PlayerGold[^1] -= goldSpent;
+                OnGoldSpent?.Invoke();
+                return true;
+            }
+            else
+            {
+                if (_playerData.PlayerGold.Count > 1)
+                {
+                    goldSpent -= _playerData.PlayerGold[^1];
+                    _playerData.PlayerGold.RemoveAt(_playerData.PlayerGold.Count - 1);
+                    _playerData.PlayerGold[^1] -= goldSpent;
+                    OnGoldSpent?.Invoke();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public BigInteger GetTotalGold()
+        {
+            BigInteger total = 0;
+
+            for (int i = 0; i < _playerData.PlayerGold.Count; i++)
+            {
+                total += _playerData.PlayerGold[i];
+            }
+
+            return total;
         }
         #endregion
 
