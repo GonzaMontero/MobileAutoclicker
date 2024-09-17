@@ -45,6 +45,8 @@ namespace Autoclicker.Scripts.Frontend.UIElements
                 Loc.CurrentLanguage = (Loc.Language)LanguageDropdown.value;
                 CommandManager.Get().OnSettingsChanged.Invoke();
             });
+
+            LanguageDropdown.value = (int)Loc.CurrentLanguage;
         }
 
         private void SetupSlider()

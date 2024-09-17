@@ -5,8 +5,8 @@ using System.Numerics;
 public class PlayerData
 {
     //Game Stats
-    public List<long> PlayerGold;
-    public Dictionary<int, int> PlayerStatUpgradeDictionary;
+    public List<long> PlayerGold = new List<long>();
+    public Dictionary<int, int> PlayerStatUpgradeDictionary = new Dictionary<int, int>();
 
     //Settings
     public int CurrentLanguage;

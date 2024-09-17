@@ -146,6 +146,7 @@ namespace Autoclicker.Scripts.Backend.Facebook
             }
             Debug.Log(result.RawResult);
         }
+
         public static void SpentCoins(int coins, string item)
         {
             var param = new Dictionary<string, object>();

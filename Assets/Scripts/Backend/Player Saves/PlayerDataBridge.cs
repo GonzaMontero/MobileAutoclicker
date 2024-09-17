@@ -24,6 +24,7 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
             base.Awake();
 
             _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+            _filePath.Replace("\\", "/");
             _playerData = LogIn();
 
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
@@ -67,7 +68,10 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
                 goldNeeds = long.MaxValue - _playerData.PlayerGold[^1]; //goldNeeds = amount of gold needed to reach the long.max value
 
                 if (goldGained - goldNeeds < 0) //if we need more gold than what we currently are gaining
+                {
                     _playerData.PlayerGold[^1] += goldGained;
+                    break;
+                }
                 else                            //if we have more gold than what we need to reach long.max
                 {
                     _playerData.PlayerGold[^1] = long.MaxValue;
@@ -161,7 +165,11 @@ namespace Autoclicker.Scripts.Backend.PlayerSaves
                 return JsonConvert.DeserializeObject<PlayerData>(jsonData);
             }
 
-            return new PlayerData();
+            PlayerData startingData = new PlayerData();
+
+            startingData.PlayerGold.Add(0);
+
+            return startingData;
         }
 
         #endregion
