@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace Autoclicker.Scripts.Utils.Managers
+namespace TowerDefense.Scripts.Utils.Managers
 {
     public class ASyncLoaderManager : MonoBehaviourSingleton<ASyncLoaderManager>
     {

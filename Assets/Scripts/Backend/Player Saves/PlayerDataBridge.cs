@@ -1,13 +1,13 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using Autoclicker.Scripts.Utils;
-using Autoclicker.Scripts.Utils.Localization;
+using TowerDefense.Scripts.Utils;
+using TowerDefense.Scripts.Utils.Localization;
 using UnityEngine.Events;
 using System.Numerics;
 using Unity.VisualScripting;
 
-namespace Autoclicker.Scripts.Backend.PlayerSaves
+namespace TowerDefense.Scripts.Backend.PlayerSaves
 {
     public class PlayerDataBridge : MonoBehaviourSingleton<PlayerDataBridge>
     {

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Autoclicker.Scripts.Utils;
+using TowerDefense.Scripts.Utils;
 using Facebook.Unity;
 using System;
 using UnityEngine.UI;
 
-namespace Autoclicker.Scripts.Backend.Facebook
+namespace TowerDefense.Scripts.Backend.Facebook
 {
     public class FacebookManager : MonoBehaviourSingleton<FacebookManager>
     {

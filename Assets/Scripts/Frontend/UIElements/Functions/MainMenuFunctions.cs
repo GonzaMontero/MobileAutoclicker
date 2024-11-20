@@ -1,13 +1,13 @@
-using Autoclicker.Scripts.Backend;
-using Autoclicker.Scripts.Backend.PlayerSaves;
-using Autoclicker.Scripts.Utils.Localization;
+using TowerDefense.Scripts.Backend;
+using TowerDefense.Scripts.Backend.PlayerSaves;
+using TowerDefense.Scripts.Utils.Localization;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Autoclicker.Scripts.Frontend.UIElements
+namespace TowerDefense.Scripts.Frontend.UIElements
 {
     public class MainMenuFunctions : MonoBehaviour
     {

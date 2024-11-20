@@ -1,7 +1,7 @@
 using UnityEngine.Events;
-using Autoclicker.Scripts.Utils;
+using TowerDefense.Scripts.Utils;
 
-namespace Autoclicker.Scripts.Backend
+namespace TowerDefense.Scripts.Backend
 {
     public class CommandManager : MonoBehaviourSingleton<CommandManager>
     {

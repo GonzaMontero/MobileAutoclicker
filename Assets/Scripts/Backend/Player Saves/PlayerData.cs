@@ -1,4 +1,3 @@
-using Autoclicker.Scripts.Backend.Upgrades;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -7,7 +6,6 @@ public class PlayerData
 {
     //Game Stats
     public List<long> PlayerGold = new List<long>();
-    public List<Upgrade> PlayerUpgrades = new List<Upgrade>();
 
     //Settings
     public int CurrentLanguage;

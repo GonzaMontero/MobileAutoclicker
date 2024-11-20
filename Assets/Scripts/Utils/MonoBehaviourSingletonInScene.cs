@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils
+namespace TowerDefense.Scripts.Utils
 {
     public class MonoBehaviourSingletonInScene<T> : MonoBehaviour where T : Component
     {

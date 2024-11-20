@@ -1,9 +1,9 @@
-using Autoclicker.Scripts.Backend;
-using Autoclicker.Scripts.Backend.PlayerSaves;
+using TowerDefense.Scripts.Backend;
+using TowerDefense.Scripts.Backend.PlayerSaves;
 
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils.Audio
+namespace TowerDefense.Scripts.Utils.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class AutomaticVolumeUpdater : MonoBehaviour

@@ -1,9 +1,9 @@
-using Autoclicker.Scripts.Utils.Managers;
+using TowerDefense.Scripts.Utils.Managers;
 
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Autoclicker.Scripts.Frontend.UIElements
+namespace TowerDefense.Scripts.Frontend.UIElements
 {
     public class IntroScreenFunctions : MonoBehaviour
     {

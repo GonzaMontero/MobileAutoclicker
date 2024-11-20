@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils.Managers
+namespace TowerDefense.Scripts.Utils.Managers
 {
     public class TimeManager : MonoBehaviourSingleton<TimeManager>
     {

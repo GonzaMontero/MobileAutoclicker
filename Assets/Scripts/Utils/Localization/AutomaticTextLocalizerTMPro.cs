@@ -1,10 +1,10 @@
-using Autoclicker.Scripts.Backend;
+using TowerDefense.Scripts.Backend;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils.Localization
+namespace TowerDefense.Scripts.Utils.Localization
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class AutomaticTextLocalizerTMPro : MonoBehaviour

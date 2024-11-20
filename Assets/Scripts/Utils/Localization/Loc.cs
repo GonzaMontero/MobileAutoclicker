@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-namespace Autoclicker.Scripts.Utils.Localization
+namespace TowerDefense.Scripts.Utils.Localization
 {
     public class Loc
     {

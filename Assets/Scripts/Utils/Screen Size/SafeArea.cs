@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils.ScreenSize
+namespace TowerDefense.Scripts.Utils.ScreenSize
 {
     /// <summary>
     /// Safe area implementation for notched mobile devices. Usage:

@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Autoclicker.Scripts.Utils
+namespace TowerDefense.Scripts.Utils
 {
     public class EncryptionUtility
     {

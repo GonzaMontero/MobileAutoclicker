@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace Autoclicker.Scripts.Utils
+namespace TowerDefense.Scripts.Utils
 {
     public class CSVLoader
     {
