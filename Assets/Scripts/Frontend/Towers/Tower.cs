@@ -64,10 +64,12 @@ namespace TowerDefense.Scripts.Frontend.Towers
             return Vector2.Distance(Target.position, transform.position) <= TargetingRange;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             Handles.color = Color.cyan;
             Handles.DrawWireDisc(transform.position, transform.forward, TargetingRange);
         }
+#endif
     }
 }

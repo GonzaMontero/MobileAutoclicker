@@ -17,7 +17,7 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
             GameObject towerToBuild = BuildManager.Get().GetSelectedTower();
 
-            tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
+            tower = Instantiate(towerToBuild, transform.position, Quaternion.identity, BuildManager.Get().DefaultParent);
         }
     }
 }

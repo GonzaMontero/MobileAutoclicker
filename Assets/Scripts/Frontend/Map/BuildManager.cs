@@ -9,6 +9,7 @@ namespace TowerDefense.Scripts.Frontend.Level
     {
         [Header("References")]
         public GameObject[] TowerPrefabs;
+        public Transform DefaultParent;
 
         private int currentSelectedTower = 0;
 
