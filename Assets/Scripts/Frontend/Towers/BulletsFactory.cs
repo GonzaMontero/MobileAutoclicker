@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TowerDefense.Scripts.Utils.Managers;
 using UnityEngine;
 
 namespace TowerDefense.Scripts.Frontend.Towers
@@ -20,7 +21,12 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         public override void Process(Tower tower)
         {
-            throw new System.NotImplementedException();
+            ObjectPooler.Get().EnableItem(1, out GameObject obj);
+
+            obj.GetComponent<VisualBullet>().SetupBullet(tower.Target, tower.Damage);
+
+            obj.transform.position = tower.FiringPoint.position;
+            obj.transform.rotation = Quaternion.identity;
         }
     }
 

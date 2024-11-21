@@ -51,7 +51,7 @@ namespace TowerDefense.Scripts.Utils.Managers
             {
                 if (PoolItems[i].ContainsID(itemID))
                 {
-                    if(FindAvailableGameobject(PoolItemLists[i], out GameObject gameObject))
+                    if (FindAvailableGameobject(PoolItemLists[i], out GameObject gameObject))
                     {
                         gameObject.SetActive(true);
                         return true;
@@ -62,7 +62,30 @@ namespace TowerDefense.Scripts.Utils.Managers
                     }
                 }
             }
-            
+            return false;
+        }
+
+        public bool EnableItem(int itemID, out GameObject obj)
+        {
+            for (short i = 0; i < PoolItems.Length; i++)
+            {
+                if (PoolItems[i].ContainsID(itemID))
+                {
+                    if(FindAvailableGameobject(PoolItemLists[i], out GameObject gameObject))
+                    {
+                        gameObject.SetActive(true);
+                        obj = gameObject;
+                        return true;
+                    }
+                    else
+                    {
+                        obj = null;
+                        return false;
+                    }
+                }
+            }
+
+            obj = null;
             return false;
         }
 
@@ -75,6 +98,8 @@ namespace TowerDefense.Scripts.Utils.Managers
                     reference.SetActive(false);
 
                     reference.transform.position = PoolItems[i].DefaultPosition.position;
+
+                    return;
                 }
                 else
                 {
