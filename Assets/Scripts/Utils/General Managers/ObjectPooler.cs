@@ -101,11 +101,9 @@ namespace TowerDefense.Scripts.Utils.Managers
 
                     return;
                 }
-                else
-                {
-                    Debug.LogError("This item is not pooled!");
-                }
             }
+
+            Debug.LogError("This item is not pooled!");
         }
 
         public bool FindAvailableGameobject(List<GameObject> list, out GameObject gameObject)

@@ -13,10 +13,6 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
     {
         private PlayerData _playerData;
 
-        public UnityEvent OnGoldGained;
-        public UnityEvent OnGoldSpent;
-        public UnityEvent OnUpgradeGained;
-
         private string _filePath;
 
         public override void Awake()
@@ -28,15 +24,6 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
             _playerData = LogIn();
 
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
-
-            if (OnGoldGained == null)
-                OnGoldGained = new UnityEvent();
-
-            if (OnGoldSpent == null)
-                OnGoldSpent = new UnityEvent();
-
-            if (OnUpgradeGained == null)
-                OnUpgradeGained = new UnityEvent();
         }
 
         public override void OnDestroy()
@@ -61,68 +48,15 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
 
         public void GainGold(long goldGained)
         {
-            long goldNeeds = 0;
 
-            while (goldGained > 0)
-            {
-                goldNeeds = long.MaxValue - _playerData.PlayerGold[^1]; //goldNeeds = amount of gold needed to reach the long.max value
-
-                if (goldGained - goldNeeds < 0) //if we need more gold than what we currently are gaining
-                {
-                    _playerData.PlayerGold[^1] += goldGained;
-                    break;
-                }
-                else                            //if we have more gold than what we need to reach long.max
-                {
-                    _playerData.PlayerGold[^1] = long.MaxValue;
-                    _playerData.PlayerGold.Add(0);
-                    goldGained -= goldNeeds;
-                }
-            }
-
-            OnGoldGained?.Invoke();
         }
 
         public bool OnSpendGold(long goldSpent)
         {
-            long goldNeeds = 0;
-
-            goldNeeds = _playerData.PlayerGold[^1] - goldSpent;
-
-            if (goldNeeds > 0)
-            {
-                _playerData.PlayerGold[^1] -= goldSpent;
-                OnGoldSpent?.Invoke();
-                return true;
-            }
-            else
-            {
-                if (_playerData.PlayerGold.Count > 1)
-                {
-                    goldSpent -= _playerData.PlayerGold[^1];
-                    _playerData.PlayerGold.RemoveAt(_playerData.PlayerGold.Count - 1);
-                    _playerData.PlayerGold[^1] -= goldSpent;
-                    OnGoldSpent?.Invoke();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            return true;
         }
 
-        public BigInteger GetTotalGold()
-        {
-            BigInteger total = 0;
 
-            for (int i = 0; i < _playerData.PlayerGold.Count; i++)
-            {
-                total += _playerData.PlayerGold[i];
-            }
-
-            return total;
-        }
         #endregion
 
         #region Player Data
@@ -167,7 +101,8 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
 
             PlayerData startingData = new PlayerData();
 
-            startingData.PlayerGold.Add(0);
+            startingData.MatchStartGold = 50;
+            startingData.MatchStartHealth = 10;
 
             return startingData;
         }

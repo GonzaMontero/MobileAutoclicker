@@ -5,7 +5,9 @@ using System.Numerics;
 public class PlayerData
 {
     //Game Stats
-    public List<long> PlayerGold = new List<long>();
+    public int PlayerGems;
+    public int MatchStartHealth;
+    public int MatchStartGold;
 
     //Settings
     public int CurrentLanguage;

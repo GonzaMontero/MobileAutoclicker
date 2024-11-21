@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TowerDefense.Scripts.Frontend.Enemies;
+using TowerDefense.Scripts.Frontend.Level;
 using TowerDefense.Scripts.Utils.Managers;
 using UnityEngine;
 
@@ -30,6 +32,8 @@ namespace TowerDefense.Scripts.Frontend.Towers
         {
             if (!target)
                 return;
+            else if (!target.gameObject.activeSelf)
+                ObjectPooler.Get().DisableItem(1, this.gameObject);
 
             Vector2 direction = (target.position - transform.position).normalized;
 
@@ -38,7 +42,10 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            ObjectPooler.Get().DisableItem(0, other.gameObject);
+            other.gameObject.GetComponent<EnemyMovement>().TakeDamage(BulletDamage);
+
+            target = null;
+
             ObjectPooler.Get().DisableItem(1, this.gameObject);
         }
     }
