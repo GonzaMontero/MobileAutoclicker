@@ -21,7 +21,7 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         private void Update()
         {
-            if(Target == null)
+            if(Target == null || !Target.gameObject.activeSelf)
             {
                 FindTarget();
                 return;

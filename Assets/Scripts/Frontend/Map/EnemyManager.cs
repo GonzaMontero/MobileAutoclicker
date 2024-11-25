@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using TowerDefense.Scripts.Frontend.UIElements;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Managers;
 
@@ -86,6 +86,8 @@ namespace TowerDefense.Scripts.Frontend.Level
             timeSinceLastSpawn = 0;
             currentWave++;
 
+            DataHolder.Get().UpdateWave(currentWave);
+
             StartCoroutine(StartWave());
         }
 
@@ -97,6 +99,11 @@ namespace TowerDefense.Scripts.Frontend.Level
         private void EnemyDestroyed()
         {
             enemiesAlive--;
+        }
+
+        public int GetCurrentWave()
+        {
+            return currentWave;
         }
     }
 }

@@ -37,6 +37,8 @@ namespace TowerDefense.Scripts.Frontend.Level
             Currency += amount;
 
             Shop.Get().CurrencyUI.text = Currency.ToString();
+
+            DataHolder.Get().UpdateCurrency(Currency);
         }
 
         public bool DecreaseCurrency(int amount)
@@ -50,6 +52,7 @@ namespace TowerDefense.Scripts.Frontend.Level
             {
                 Currency -= amount;
                 Shop.Get().CurrencyUI.text = Currency.ToString();
+                DataHolder.Get().UpdateCurrency(Currency);
                 return true;
             }
         }
@@ -65,6 +68,8 @@ namespace TowerDefense.Scripts.Frontend.Level
 
             if (Health <= 0)
             {
+                TogglePause(true);
+
                 Debug.Log("You Lost!");
             }
         }
