@@ -16,6 +16,7 @@ namespace TowerDefense.Scripts.Frontend.Enemies
         public int Health = 1;
         public int Value = 10;
         public int PoolID = 0;
+        public int Damage = 1;
 
         private Transform target;
         private int pathIndex = 0;
@@ -27,14 +28,16 @@ namespace TowerDefense.Scripts.Frontend.Enemies
 
         private void Update()
         {
+            if (MapManager.Get().IsPaused)
+                return;
+
             if (Vector2.Distance(target.position, ThisRigidBody.position) <= 0.1f)
             {
                 pathIndex++;
 
                 if (pathIndex >= MapManager.Get().PathNodes.Length)
                 {
-                    ObjectPooler.Get().DisableItem(PoolID, this.gameObject);
-                    EnemyManager.OnEnemyDestroy.Invoke();
+                    ReachEndOfPath();
                     return;
                 }
                 else
@@ -59,6 +62,13 @@ namespace TowerDefense.Scripts.Frontend.Enemies
             {
                 ThisRigidBody.velocity = direction.normalized * MoveSpeed;
             }
+        }
+
+        public void ReachEndOfPath()
+        {
+            ObjectPooler.Get().DisableItem(PoolID, this.gameObject);
+            EnemyManager.OnEnemyDestroy.Invoke();
+            MapManager.Get().DecreaseHealth(Damage);
         }
 
         public void TakeDamage(int damage)

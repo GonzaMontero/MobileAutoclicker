@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TowerDefense.Scripts.Backend.PlayerSaves;
+using TowerDefense.Scripts.Frontend.UIElements;
 using TowerDefense.Scripts.Utils;
 using UnityEngine;
 
@@ -15,16 +16,27 @@ namespace TowerDefense.Scripts.Frontend.Level
 
         public int Currency;
         public int Health;
+        public bool IsPaused = false;
 
         private void Start()
         {
-            //Currency = PlayerDataBridge.Get().GetPlayerData().MatchStartGold;
-            //Health = PlayerDataBridge.Get().GetPlayerData().MatchStartHealth;
+            if (PlayerDataBridge.Get() != null)
+            {
+                Currency = PlayerDataBridge.Get().GetPlayerData().MatchStartGold;
+                Health = PlayerDataBridge.Get().GetPlayerData().MatchStartHealth;
+            }
+            else
+            {
+                Currency = 50;
+                Health = 5;
+            }
         }
 
         public void IncreaseCurrency(int amount)
         {
             Currency += amount;
+
+            Shop.Get().CurrencyUI.text = Currency.ToString();
         }
 
         public bool DecreaseCurrency(int amount)
@@ -37,7 +49,23 @@ namespace TowerDefense.Scripts.Frontend.Level
             else
             {
                 Currency -= amount;
+                Shop.Get().CurrencyUI.text = Currency.ToString();
                 return true;
+            }
+        }
+
+        public void TogglePause(bool toggle)
+        {
+            IsPaused = toggle;
+        }
+
+        public void DecreaseHealth(int damage)
+        {
+            Health -= damage;
+
+            if (Health <= 0)
+            {
+                Debug.Log("You Lost!");
             }
         }
     }
