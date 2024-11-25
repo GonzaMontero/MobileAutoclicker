@@ -72,6 +72,13 @@ namespace TowerDefense.Scripts.Frontend.Level
             ObjectPooler.Get().EnableItem(EnemyIDs[0]);
         }
 
+        public void GameEnded()
+        {
+            isSpawning = false;
+
+            ObjectPooler.Get().DisableAllItems(EnemyIDs[0]);
+        }
+
         private IEnumerator StartWave()
         {
             yield return new WaitForSeconds(TimeBetweenWaves);

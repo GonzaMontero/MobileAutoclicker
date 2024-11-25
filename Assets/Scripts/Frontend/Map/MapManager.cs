@@ -70,6 +70,8 @@ namespace TowerDefense.Scripts.Frontend.Level
             {
                 TogglePause(true);
 
+                EnemyManager.Get().GameEnded();
+
                 Debug.Log("You Lost!");
             }
         }

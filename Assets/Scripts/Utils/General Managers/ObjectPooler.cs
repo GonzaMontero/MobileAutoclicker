@@ -106,6 +106,20 @@ namespace TowerDefense.Scripts.Utils.Managers
             Debug.LogError("This item is not pooled!");
         }
 
+        public void DisableAllItems(int itemID)
+        {
+            for (short i = 0; i < PoolItems.Length; i++)
+            {
+                if (PoolItems[i].ContainsID(itemID))
+                {
+                    foreach(GameObject item in PoolItemLists[i])
+                    {
+                        item.SetActive(false);
+                    }
+                }
+            }
+        }
+
         public bool FindAvailableGameobject(List<GameObject> list, out GameObject gameObject)
         {
             foreach (GameObject go in list)

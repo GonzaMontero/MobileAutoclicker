@@ -53,7 +53,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   TargetingRange: 5
   BulletsPerSecond: 1
-  Damage: 3
+  Damage: 1
 --- !u!1 &5285124723517513599
 GameObject:
   m_ObjectHideFlags: 0
