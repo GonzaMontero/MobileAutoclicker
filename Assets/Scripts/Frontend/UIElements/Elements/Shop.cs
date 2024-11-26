@@ -73,6 +73,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
                 return;
             }
 
+            MapManager.Get().UpdateCurrency(newCurrency);
+
             Instantiate(towerToBuild, currentPlot.transform.position, Quaternion.identity, BuildManager.Get().DefaultParent);
 
             currentPlot.gameObject.SetActive(false);

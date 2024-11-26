@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1051647259
+    locked: 0
   - name: Turrets
     uniqueID: 1212916797
+    locked: 0
+  - name: Plots
+    uniqueID: 175692193
+    locked: 0
+  - name: UI
+    uniqueID: 1051104709
     locked: 0
