@@ -30,31 +30,23 @@ namespace TowerDefense.Scripts.Frontend.Level
                 Currency = 50;
                 Health = 5;
             }
+
+            DataHolder.Get().UpdateCurrency(Currency);
+            DataHolder.Get().UpdateHealth(Health);
         }
 
         public void IncreaseCurrency(int amount)
         {
             Currency += amount;
-
             Shop.Get().CurrencyUI.text = Currency.ToString();
-
             DataHolder.Get().UpdateCurrency(Currency);
         }
 
-        public bool DecreaseCurrency(int amount)
+        public void UpdateCurrency(int newCurrency)
         {
-            if(Currency < amount)
-            {
-                Debug.Log("No money (poor ahh)!");
-                return false;
-            }
-            else
-            {
-                Currency -= amount;
-                Shop.Get().CurrencyUI.text = Currency.ToString();
-                DataHolder.Get().UpdateCurrency(Currency);
-                return true;
-            }
+            Currency = newCurrency;
+            Shop.Get().CurrencyUI.text = Currency.ToString();
+            DataHolder.Get().UpdateCurrency(Currency);
         }
 
         public void TogglePause(bool toggle)
@@ -65,6 +57,8 @@ namespace TowerDefense.Scripts.Frontend.Level
         public void DecreaseHealth(int damage)
         {
             Health -= damage;
+
+            DataHolder.Get().UpdateHealth(Health);
 
             if (Health <= 0)
             {

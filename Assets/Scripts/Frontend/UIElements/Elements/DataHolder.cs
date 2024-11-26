@@ -11,22 +11,22 @@ namespace TowerDefense.Scripts.Frontend.UIElements
     {
         [Header("References")]
         public TextMeshProUGUI CurrencyText;
+        public TextMeshProUGUI HealthText;
         public TextMeshProUGUI WaveText;
 
-        private void Start()
+        public void UpdateCurrency(int newCurrency)
         {
-            CurrencyText.text = "Gold - " + MapManager.Get().Currency.ToString();
-            WaveText.text = "Wave - " + EnemyManager.Get().GetCurrentWave().ToString();
+            CurrencyText.text = "- " + newCurrency.ToString();
         }
 
-        public void UpdateCurrency(int NewCurrency)
+        public void UpdateHealth(int newHealth)
         {
-            CurrencyText.text = "Gold - " + NewCurrency.ToString();
+            HealthText.text = "- " + newHealth.ToString();
         }
 
-        public void UpdateWave(int NewWave)
+        public void UpdateWave(int newWave)
         {
-            WaveText.text = "Wave - " + NewWave;
+            WaveText.text = "Wave - " + newWave.ToString();
         }
     }
 }

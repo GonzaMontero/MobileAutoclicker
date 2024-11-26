@@ -68,7 +68,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
 
             GameObject towerToBuild = BuildManager.Get().GetSelectedTower().Prefab;
 
-            if (!MapManager.Get().DecreaseCurrency(BuildManager.Get().GetSelectedTower().Cost))
+            if(!MathUtils.CanSpend(MapManager.Get().Currency, BuildManager.Get().GetSelectedTower().Cost, out int newCurrency))
             {
                 return;
             }
