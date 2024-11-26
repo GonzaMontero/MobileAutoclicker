@@ -12,7 +12,10 @@ namespace TowerDefense.Scripts.Frontend.Towers
     {
         public void Update()
         {
-            if(Input.touchCount>0)
+            if (MapManager.Get().IsPaused)
+                return;
+
+            if (Input.touchCount>0)
             {
                 Touch touch = Input.GetTouch(0);
 

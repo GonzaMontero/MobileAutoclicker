@@ -51,7 +51,10 @@ namespace TowerDefense.Scripts.Frontend.Enemies
         private void FixedUpdate()
         {
             if (MapManager.Get().IsPaused)
+            {
+                ThisRigidBody.velocity = Vector2.zero;
                 return;
+            }
 
             Vector2 direction = (target.position - transform.position);
             float distanceToTarget = direction.magnitude;

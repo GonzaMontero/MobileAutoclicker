@@ -123,13 +123,13 @@ namespace TowerDefense.Scripts.Backend.Facebook
             print("Logout Successful");
         }
 
-        public void FacebookSharefeed()
+        public void FacebookSharefeed(int waveReached)
         {
             string url = "https:developers.facebook.com/docs/unity/reference/current/FB.ShareLink";
             FB.ShareLink(
                 new Uri(url),
-                "Checkout COCO 3D channel",
-                "I just watched " + "22" + " times of this channel",
+                "Play Tower Defense: Outlast",
+                "I just reached wave " + waveReached.ToString(),
                 null,
                 ShareCallback);
 

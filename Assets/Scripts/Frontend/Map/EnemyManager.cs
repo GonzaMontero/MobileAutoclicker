@@ -18,7 +18,8 @@ namespace TowerDefense.Scripts.Frontend.Level
         [Header("Attributes")]
         public int BaseEnemies = 8;
         public float EnemiesPerSeconds = 0.5f;
-        public float TimeBetweenWaves = 5f;   
+        public float TimeBetweenWaves = 5f;
+        public float MaxEnemiesPerSecond = 10f;
 
         [Header("Events")]
         public static UnityEvent OnEnemyDestroy;
@@ -27,6 +28,7 @@ namespace TowerDefense.Scripts.Frontend.Level
         private int enemiesAlive;
         private int enemiesLeftToSpawn;
         private float timeSinceLastSpawn;
+        private float epsScalar;
         private float DifficultyScalar = 0.75f;
         private bool isSpawning = false;
 
@@ -46,7 +48,7 @@ namespace TowerDefense.Scripts.Frontend.Level
 
         private void Update()
         {
-            if (!isSpawning)
+            if (!isSpawning || MapManager.Get().IsPaused)
                 return;
 
             timeSinceLastSpawn += Time.deltaTime;
@@ -69,14 +71,19 @@ namespace TowerDefense.Scripts.Frontend.Level
 
         private void SpawnEnemy()
         {
-            ObjectPooler.Get().EnableItem(EnemyIDs[0]);
+            int index = UnityEngine.Random.Range(0, EnemyIDs.Length);
+
+            ObjectPooler.Get().EnableItem(EnemyIDs[index]);
         }
 
         public void GameEnded()
         {
             isSpawning = false;
 
-            ObjectPooler.Get().DisableAllItems(EnemyIDs[0]);
+            for (short i = 0; i < EnemyIDs.Length; i++) 
+            {
+                ObjectPooler.Get().DisableAllItems(EnemyIDs[i]);
+            }
         }
 
         private IEnumerator StartWave()
@@ -85,6 +92,7 @@ namespace TowerDefense.Scripts.Frontend.Level
 
             isSpawning = true;
             enemiesLeftToSpawn = EnemiesPerWave();
+            EnemiesPerSeconds = EnemiesPerSecond();
         }
 
         private void EndWave()
@@ -101,6 +109,11 @@ namespace TowerDefense.Scripts.Frontend.Level
         private int EnemiesPerWave()
         {
             return Mathf.RoundToInt(BaseEnemies * Mathf.Pow(currentWave, DifficultyScalar));
+        }
+
+        private float EnemiesPerSecond()
+        {
+            return Mathf.Clamp(Mathf.RoundToInt(EnemiesPerSeconds * Mathf.Pow(currentWave, epsScalar)), 0f, MaxEnemiesPerSecond);
         }
 
         private void EnemyDestroyed()

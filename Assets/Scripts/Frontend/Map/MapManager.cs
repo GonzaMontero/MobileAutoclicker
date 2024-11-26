@@ -66,6 +66,8 @@ namespace TowerDefense.Scripts.Frontend.Level
 
                 EnemyManager.Get().GameEnded();
 
+                InGamePanelFunctions.Get().GameEnd(EnemyManager.Get().GetCurrentWave());
+
                 Debug.Log("You Lost!");
             }
         }
