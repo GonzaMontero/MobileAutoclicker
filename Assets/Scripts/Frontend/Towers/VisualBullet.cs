@@ -30,6 +30,9 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         private void FixedUpdate()
         {
+            if (MapManager.Get().IsPaused)
+                return;
+
             if (!target)
                 return;
             else if (!target.gameObject.activeSelf)

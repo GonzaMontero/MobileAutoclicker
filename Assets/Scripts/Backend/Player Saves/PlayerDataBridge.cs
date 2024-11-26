@@ -3,9 +3,6 @@ using UnityEngine;
 using Newtonsoft.Json;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Localization;
-using UnityEngine.Events;
-using System.Numerics;
-using Unity.VisualScripting;
 
 namespace TowerDefense.Scripts.Backend.PlayerSaves
 {
@@ -102,7 +99,7 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
             PlayerData startingData = new PlayerData();
 
             startingData.MatchStartGold = 50;
-            startingData.MatchStartHealth = 10;
+            startingData.MatchStartHealth = 5;
 
             return startingData;
         }

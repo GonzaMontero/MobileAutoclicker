@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using TowerDefense.Scripts.Frontend.Level;
 
 namespace TowerDefense.Scripts.Frontend.Towers
 {
@@ -21,6 +22,9 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         private void Update()
         {
+            if (MapManager.Get().IsPaused)
+                return;
+
             if(Target == null || !Target.gameObject.activeSelf)
             {
                 FindTarget();
