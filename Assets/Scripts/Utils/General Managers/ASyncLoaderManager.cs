@@ -9,10 +9,12 @@ namespace TowerDefense.Scripts.Utils.Managers
     public class ASyncLoaderManager : MonoBehaviourSingleton<ASyncLoaderManager>
     {
         public float CurrentLoadProgress;
+        public GameObject LoadingScreenItem;
 
         public void InitiateSceneLoad(string sceneToLoad)
         {
             StartCoroutine(LoadSceneAsync(sceneToLoad));
+            LoadingScreenItem.SetActive(true);
         }
 
         IEnumerator LoadSceneAsync(string sceneToLoad)

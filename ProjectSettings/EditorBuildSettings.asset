@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Tower Defense/MainMenu.unity
+    path: Assets/Scenes/Tower Defense/Main Menu.unity
     guid: 1ee3fba37749a5d4b8ace0f88b97ea64
   - enabled: 0
     path: Assets/Scenes/MainGame.unity
