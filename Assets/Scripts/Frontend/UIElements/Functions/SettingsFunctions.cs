@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace TowerDefense.Scripts.Frontend.UIElements
 {
-    public class MainMenuFunctions : MonoBehaviour
+    public class SettingsFunctions : MonoBehaviour
     {
         [Header("References")]
         public TMP_Dropdown LanguageDropdown;

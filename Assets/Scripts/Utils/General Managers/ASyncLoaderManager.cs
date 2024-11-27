@@ -39,8 +39,9 @@ namespace TowerDefense.Scripts.Utils.Managers
         }
 
         private void OnSceneChanged(Scene current, Scene next)
-        {
+        { 
             LoadingScreenItem.GetComponent<Canvas>().worldCamera = Camera.main;
+            LoadingScreenItem.SetActive(false);
         }
     }
 }
