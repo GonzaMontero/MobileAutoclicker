@@ -18,7 +18,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         private void Start()
         {
             SetupDropdown();
-            SetupSlider();
+            //SetupSlider();
         }
 
         #region Setups

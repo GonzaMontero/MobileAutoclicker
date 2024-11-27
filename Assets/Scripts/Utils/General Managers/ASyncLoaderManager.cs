@@ -8,8 +8,17 @@ namespace TowerDefense.Scripts.Utils.Managers
 {
     public class ASyncLoaderManager : MonoBehaviourSingleton<ASyncLoaderManager>
     {
+        [Header("References")]
         public float CurrentLoadProgress;
         public GameObject LoadingScreenItem;
+        public Slider LoadingScreenSlider;
+
+        public override void Awake()
+        {
+            base.Awake();
+
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
 
         public void InitiateSceneLoad(string sceneToLoad)
         {
@@ -24,8 +33,14 @@ namespace TowerDefense.Scripts.Utils.Managers
             while (!loadOperation.isDone)
             {
                 CurrentLoadProgress = Mathf.Clamp01(loadOperation.progress / 0.9f);
+                LoadingScreenSlider.value = CurrentLoadProgress;
                 yield return null;
-            }
+            }            
+        }
+
+        private void OnSceneChanged(Scene current, Scene next)
+        {
+            LoadingScreenItem.GetComponent<Canvas>().worldCamera = Camera.main;
         }
     }
 }
