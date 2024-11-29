@@ -22,8 +22,10 @@ namespace TowerDefense.Scripts.Backend.Facebook
                 {
                     if (FB.IsInitialized)
                         FB.ActivateApp();
+#if UNITY_EDITOR
                     else
                         print("Couldn't initialize");
+#endif
                 },
                 isGameShown =>
                 {
@@ -41,12 +43,17 @@ namespace TowerDefense.Scripts.Backend.Facebook
         {
             if (FB.IsLoggedIn)
             {
+
+#if UNITY_EDITOR
                 Debug.Log("Facebook is Login!");
+#endif
                 string s = "client token" + FB.ClientToken + "User Id" + AccessToken.CurrentAccessToken.UserId + "token string" + AccessToken.CurrentAccessToken.TokenString;
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.Log("Facebook is not Logged in!");
+#endif
             }
         }
 
@@ -68,11 +75,15 @@ namespace TowerDefense.Scripts.Backend.Facebook
             if (result.Error == null)
             {
                 string name = "" + result.ResultDictionary["first_name"];
+#if UNITY_EDITOR
                 Debug.Log("" + name);
+#endif
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.Log(result.Error);
+#endif
             }
         }
 
@@ -93,7 +104,10 @@ namespace TowerDefense.Scripts.Backend.Facebook
                 //AccessToken class will have session details
                 var aToken = AccessToken.CurrentAccessToken;
 
+#if UNITY_EDITOR
                 print(aToken.UserId);
+#endif
+
 
                 foreach (string perm in aToken.Permissions)
                 {
@@ -102,7 +116,9 @@ namespace TowerDefense.Scripts.Backend.Facebook
             }
             else
             {
+#if UNITY_EDITOR
                 print("Failed to log in");
+#endif
             }
         }
 
@@ -117,10 +133,14 @@ namespace TowerDefense.Scripts.Backend.Facebook
             FB.LogOut();
             while (FB.IsLoggedIn)
             {
+#if UNITY_EDITOR
                 print("Logging Out");
+#endif
                 yield return null;
             }
+#if UNITY_EDITOR
             print("Logout Successful");
+#endif
         }
 
         public void FacebookSharefeed(int waveReached)
@@ -137,7 +157,9 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         private static void ShareCallback(IShareResult result)
         {
+#if UNITY_EDITOR
             Debug.Log("ShareCallback");
+#endif
             SpentCoins(2, "sharelink");
             if (result.Error != null)
             {

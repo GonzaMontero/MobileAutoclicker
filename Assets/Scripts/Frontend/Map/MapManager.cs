@@ -68,7 +68,9 @@ namespace TowerDefense.Scripts.Frontend.Level
 
                 InGamePanelFunctions.Get().GameEnd(EnemyManager.Get().GetCurrentWave());
 
+#if UNITY_EDITOR
                 Debug.Log("You Lost!");
+#endif
             }
         }
     }

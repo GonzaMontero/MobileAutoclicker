@@ -7,7 +7,7 @@ key_volume,Volume,Volumen
 key_return,Return,Volver
 key_saves,Saves,Guardados
 key_stats,Stats,Estadisticas
-key_baseT,Basic Tower,Torre Basica
+key_baseTower,Basic Tower,Torre Basica
 key_advancedTower,Advanced Tower,Torre Avanzada
 key_tutorial,Tutorial,Tutorial
 key_wave,Wave,Oleada
@@ -16,3 +16,8 @@ key_health,Health,Vida
 key_gold,Gold,Oro
 key_gems,Gems,Gemas
 key_upgrade,Upgrade,Mejorar
+key_baseTowerInfo,"Basic Tower (low cost, low damage","Torre Basica (coste bajo, daño bajo)"
+key_advancedTowerInfo,"Advanced Tower (high cost, high damage)","Torre Avanzada (coste alto, daño alto)"
+key_plotData,Press to open build menu,Presionar para abrir menu de torres
+key_basicEnemy,Basic Enemy,Enemigo Basico
+key_advancedEnemy,Advanced Enemy,Enemigo Avanzado

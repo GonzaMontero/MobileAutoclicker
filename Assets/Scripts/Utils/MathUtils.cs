@@ -15,7 +15,9 @@ namespace TowerDefense.Scripts.Utils
         {
             if (currentCurrency < cost)
             {
+#if UNITY_EDITOR
                 Debug.Log("No money (poor ahh)!");
+#endif
                 newCurrency = currentCurrency;
                 return false;
             }

@@ -11,6 +11,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         public GameObject MainMenuPanel;
         public GameObject ShopPanel;
         public GameObject SettingsPanel;
+        public GameObject TutorialPanel;
 
         public void LoadLevelButton(string sceneToLoad)
         {
@@ -28,6 +29,12 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         {
             MainMenuPanel.SetActive(!toggle);
             ShopPanel.SetActive(toggle);
+        }
+
+        public void ToggleTutorial(bool toggle)
+        {
+            SettingsPanel.SetActive(!toggle);
+            TutorialPanel.SetActive(toggle);
         }
     }
 }

@@ -103,7 +103,9 @@ namespace TowerDefense.Scripts.Utils.Managers
                 }
             }
 
+#if UNITY_EDITOR
             Debug.LogError("This item is not pooled!");
+#endif
         }
 
         public void DisableAllItems(int itemID)

@@ -28,7 +28,9 @@ namespace TowerDefense.Scripts.Utils
         {
             if (instance != null)
             {
+#if UNITY_EDITOR
                 Debug.Log(instance.name + " was destroyed successfully");
+#endif
             }
         }
     }
