@@ -4838,6 +4838,7 @@ GameObject:
   - component: {fileID: 1185032921}
   - component: {fileID: 1185032920}
   - component: {fileID: 1185032923}
+  - component: {fileID: 1185032924}
   m_Layer: 0
   m_Name: CNT_Managers
   m_TagString: Untagged
@@ -4915,6 +4916,18 @@ MonoBehaviour:
   CurrentLoadProgress: 0
   LoadingScreenItem: {fileID: 459150290}
   LoadingScreenSlider: {fileID: 228426537}
+--- !u!114 &1185032924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185032918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296d503ad54fc4d4cb928aa9ca0a2f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1259014103
 GameObject:
   m_ObjectHideFlags: 0
