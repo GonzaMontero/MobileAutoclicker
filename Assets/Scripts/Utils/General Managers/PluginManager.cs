@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PluginManager : MonoBehaviourSingleton<PluginManager>
 {
-    const string pluginPackName = "com.insaustialejandro.logger";
-    const string pluginClassName = pluginPackName + ".LoggerPlugin";
+    const string pluginPackName = "com.montero2024.ml";
+    const string pluginClassName = pluginPackName + ".MessageDisplay";
 
 #if UNITY_ANDROID || PLATFORM_ANDROID
     AndroidJavaClass pluginClass;
@@ -83,6 +83,5 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     //Event Receivers
     void HandleUnityLog(string logString, string stacktrace, LogType type)
     {
-        RegisterLog(logString);
     }
 }
