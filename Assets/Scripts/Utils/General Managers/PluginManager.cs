@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class PluginManager : MonoBehaviourSingleton<PluginManager>
 {
-    const string pluginPackName = "com.montero2024.ml";
-    const string pluginClassName = pluginPackName + ".MessageDisplay";
+    const string MessagePluginPackageName = "com.montero2024.ml";
+    const string MessagePluginClassName = MessagePluginPackageName + ".MessageDisplay";
+
+    const string LogPluginPackageName = "com.montero2024.lv";
+    const string LogPluginClassName = LogPluginPackageName + ".LoggerDisplay";
 
 #if UNITY_ANDROID || PLATFORM_ANDROID
-    AndroidJavaClass pluginClass;
-    AndroidJavaObject pluginInst;
+    AndroidJavaClass MessagePluginClass;
+    AndroidJavaObject MessagePluginInstance;
+
+    AndroidJavaClass LogPluginClass;
+    AndroidJavaObject LogPluginInstance;
 #endif
 
     //Unity Events
@@ -23,14 +29,17 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
         return;
 #endif
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        pluginClass = new AndroidJavaClass(pluginClassName);
-        pluginInst = pluginClass.CallStatic<AndroidJavaObject>("getInstance");
-
         AndroidJavaClass unityClass =
             new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activity =
             unityClass.GetStatic<AndroidJavaObject>("currentActivity");
-        pluginInst.Call("Set", activity);
+        MessagePluginInstance.Call("Set", activity);
+
+        MessagePluginClass = new AndroidJavaClass(MessagePluginClassName);
+        MessagePluginInstance = MessagePluginClass.CallStatic<AndroidJavaObject>("getInstance");
+
+        LogPluginClass = new AndroidJavaClass(LogPluginClassName);
+        LogPluginInstance = LogPluginClass.CallStatic<AndroidJavaObject>("getInstance");
 #endif
 
         Application.logMessageReceived += HandleUnityLog;
@@ -50,15 +59,15 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     public void RegisterLog(string log)
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        pluginInst.Call("SendLog", log);
+        MessagePluginInstance.Call("SendLog", log);
 #endif
     }
 
     public string GetLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        if (pluginInst != null)
-            return pluginInst.Call<string>("GetLogs");
+        if (MessagePluginInstance != null)
+            return MessagePluginInstance.Call<string>("GetLogs");
         else
             return "Plugin not found";
 #endif
@@ -68,7 +77,7 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     public void ReadLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        pluginInst.Call("ReadLogs");
+        MessagePluginInstance.Call("ReadLogs");
         GetLogs();
 #endif
     }
@@ -76,12 +85,13 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     public void ClearLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        pluginInst.Call("ClearLogs");
+        MessagePluginInstance.Call("ClearLogs");
 #endif
     }
 
     //Event Receivers
     void HandleUnityLog(string logString, string stacktrace, LogType type)
     {
+        RegisterLog(logString);
     }
 }
