@@ -70,7 +70,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
         }
 
 
-        void DisplayUsername(IResult result)
+        public void DisplayUsername(IResult result)
         {
             if (result.Error == null)
             {
@@ -155,6 +155,17 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         }
 
+        public void FacebookShareMessage(string contentTitle, string contentContents)
+        {
+            string url = "https:developers.facebook.com/docs/unity/reference/current/FB.ShareLink";
+            FB.ShareLink(
+                new Uri(url),
+                contentTitle,
+                contentContents,
+                null,
+                ShareCallback);
+        }
+
         private static void ShareCallback(IShareResult result)
         {
 #if UNITY_EDITOR
@@ -174,6 +185,11 @@ namespace TowerDefense.Scripts.Backend.Facebook
             var param = new Dictionary<string, object>();
             param[AppEventParameterName.ContentID] = item;
             FB.LogAppEvent(AppEventName.SpentCredits, (float)coins, param);
+        }
+
+        public bool IsLoggedIn()
+        {
+            return FB.IsLoggedIn;
         }
     }
 }

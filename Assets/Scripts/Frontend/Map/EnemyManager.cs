@@ -1,6 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+
+using GooglePlayGames;
+
 using TowerDefense.Scripts.Frontend.UIElements;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Managers;
@@ -100,6 +101,20 @@ namespace TowerDefense.Scripts.Frontend.Level
             isSpawning = false;
             timeSinceLastSpawn = 0;
             currentWave++;
+
+            if(currentWave == 10)
+            {
+
+                GooglePlayManager.Get().UnlockAchievement(GPGSIds.achievement_starting_defender);
+            }
+            if(currentWave == 15)
+            {
+                GooglePlayManager.Get().UnlockAchievement(GPGSIds.achievement_middle_defender);
+            }
+            if (currentWave == 20)
+            {
+                GooglePlayManager.Get().UnlockAchievement(GPGSIds.achievement_top_defender);
+            }
 
             DataHolder.Get().UpdateWave(currentWave);
 

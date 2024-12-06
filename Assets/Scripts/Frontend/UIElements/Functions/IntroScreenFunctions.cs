@@ -12,6 +12,13 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         public GameObject ShopPanel;
         public GameObject SettingsPanel;
         public GameObject TutorialPanel;
+        public GameObject FacebookPanel;
+        public GameObject PluginPanel;
+
+        private void Awake()
+        {
+            MainMenuPanel.SetActive(true);
+        }
 
         public void LoadLevelButton(string sceneToLoad)
         {
@@ -35,6 +42,18 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         {
             SettingsPanel.SetActive(!toggle);
             TutorialPanel.SetActive(toggle);
+        }
+
+        public void ToggleFacebook(bool toggle)
+        {
+            MainMenuPanel.SetActive(!toggle);
+            FacebookPanel.SetActive(toggle);
+        }
+
+        public void TogglePlugin(bool toggle)
+        {
+            MainMenuPanel.SetActive(!toggle);
+            PluginPanel.SetActive(toggle);
         }
     }
 }

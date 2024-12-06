@@ -16,8 +16,16 @@ key_health,Health,Vida
 key_gold,Gold,Oro
 key_gems,Gems,Gemas
 key_upgrade,Upgrade,Mejorar
-key_baseTowerInfo,"Basic Tower (low cost, low damage","Torre Basica (coste bajo, daño bajo)"
-key_advancedTowerInfo,"Advanced Tower (high cost, high damage)","Torre Avanzada (coste alto, daño alto)"
+key_baseTowerInfo,"Basic Tower (low cost, low damage","Torre Basica (coste bajo, danio bajo)"
+key_advancedTowerInfo,"Advanced Tower (high cost, high damage)","Torre Avanzada (coste alto, daio alto)"
 key_plotData,Press to open build menu,Presionar para abrir menu de torres
 key_basicEnemy,Basic Enemy,Enemigo Basico
 key_advancedEnemy,Advanced Enemy,Enemigo Avanzado
+key_logIn,Log In,Iniciar Sesion
+key_logOut,Log Out,Cerrar Sesion
+key_share,Share,Compartir
+key_notLogged,Not Logged,No Iniciado
+key_viewLogs,View Logs,Ver Logs
+key_clearLogs,Clear Logs,Limpiar Logs
+key_sendLog,Send Log,Enviar Log
+key_isLogged,Logged In,Inciado

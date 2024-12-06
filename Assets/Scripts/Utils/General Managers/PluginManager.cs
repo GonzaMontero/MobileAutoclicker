@@ -33,13 +33,15 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
             new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activity =
             unityClass.GetStatic<AndroidJavaObject>("currentActivity");
-        MessagePluginInstance.Call("Set", activity);
-
+       
         MessagePluginClass = new AndroidJavaClass(MessagePluginClassName);
         MessagePluginInstance = MessagePluginClass.CallStatic<AndroidJavaObject>("getInstance");
 
         LogPluginClass = new AndroidJavaClass(LogPluginClassName);
         LogPluginInstance = LogPluginClass.CallStatic<AndroidJavaObject>("getInstance");
+
+        MessagePluginInstance.Call("Set", activity);
+        LogPluginInstance.Call("SetActivity", activity);
 #endif
 
         Application.logMessageReceived += HandleUnityLog;
@@ -59,15 +61,15 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     public void RegisterLog(string log)
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        MessagePluginInstance.Call("SendLog", log);
+        LogPluginInstance.Call("SendLog", log);
 #endif
     }
 
     public string GetLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        if (MessagePluginInstance != null)
-            return MessagePluginInstance.Call<string>("GetLogs");
+        if (LogPluginInstance != null)
+            return LogPluginInstance.Call<string>("GetLogs");
         else
             return "Plugin not found";
 #endif
@@ -77,15 +79,25 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
     public void ReadLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        MessagePluginInstance.Call("ReadLogs");
+        LogPluginInstance.Call("ReadLogs");
         GetLogs();
 #endif
+    }
+
+    public void GenerateLogs()
+    {
+        LogPluginInstance.Call("ReadLogs");
+        Debug.Log("ReadLogsSuccess");
+        string s = GetLogs();
+        Debug.Log("GetLogsSuccess");
+        MessagePluginInstance.Call("SetBasicMessage", s);
+        Debug.Log("SetMessageSuccess");
     }
 
     public void ClearLogs()
     {
 #if UNITY_ANDROID || PLATFORM_ANDROID
-        MessagePluginInstance.Call("ClearLogs");
+        LogPluginInstance.Call("ClearLogs");
 #endif
     }
 

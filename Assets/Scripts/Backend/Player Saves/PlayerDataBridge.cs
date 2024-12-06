@@ -3,6 +3,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Localization;
+using System;
 
 namespace TowerDefense.Scripts.Backend.PlayerSaves
 {
@@ -14,13 +15,7 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
 
         public override void Awake()
         {
-            base.Awake();
-
-            _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
-            _filePath.Replace("\\", "/");
-            _playerData = LogIn();
-
-            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
+            base.Awake();        
         }
 
         public override void OnDestroy()
@@ -43,16 +38,21 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
             _playerData.CurrentVolume = volume;
         }
 
-        public void GainGold(long goldGained)
+        public void LoadGame()
         {
+            _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+            _filePath.Replace("\\", "/");
+            _playerData = LogIn();
 
+            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
         }
 
-        public bool OnSpendGold(long goldSpent)
+        public void OverrideSave(PlayerData newPlayerData)
         {
-            return true;
-        }
+            _playerData = newPlayerData;
 
+            SavePlayerData(_playerData);
+        }
 
         #endregion
 
@@ -61,10 +61,6 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         public void LogOut(PlayerData playerData)
         {
             SavePlayerData(playerData);
-
-#if UNITY_EDITOR
-            Debug.Log("Player data saved and encrypted");
-#endif
         }
 
         private void SavePlayerData(PlayerData playerData)
@@ -78,10 +74,6 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         public PlayerData LogIn()
         {
             PlayerData playerData = LoadPlayerData();
-
-#if UNITY_EDITOR
-            Debug.Log("Player data loaded and decrypted");
-#endif
 
             return playerData;
         }
