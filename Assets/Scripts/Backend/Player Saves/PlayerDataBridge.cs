@@ -15,7 +15,13 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
 
         public override void Awake()
         {
-            base.Awake();        
+            base.Awake();
+
+            _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+            _filePath.Replace("\\", "/");
+            _playerData = LogIn();
+
+            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
         }
 
         public override void OnDestroy()

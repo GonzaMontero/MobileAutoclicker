@@ -47,8 +47,10 @@ public class PluginManager : MonoBehaviourSingleton<PluginManager>
         Application.logMessageReceived += HandleUnityLog;
     }
 
-    void OnDestroy()
+    public override void OnDestroy()
     {
+        base.OnDestroy();
+
         Application.logMessageReceived -= HandleUnityLog;
     }
 

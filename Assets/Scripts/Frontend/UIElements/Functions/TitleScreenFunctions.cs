@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using TowerDefense.Scripts.Utils.Managers;
 using UnityEngine;
 
-public class TitleScreenFunctions : MonoBehaviour
+namespace TowerDefense.Scripts.Frontend.UIElements
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TitleScreenFunctions : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void EnterGame()
+        {
+            ASyncLoaderManager.Get().InitiateSceneLoad("Main Menu");
+        }
     }
 }

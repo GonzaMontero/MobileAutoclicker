@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Tower Defense/Title Screen.unity
+    guid: 298deafb0567b804eb41c3be87434e76
+  - enabled: 1
     path: Assets/Scenes/Tower Defense/Main Menu.unity
     guid: 1ee3fba37749a5d4b8ace0f88b97ea64
   - enabled: 1
