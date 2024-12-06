@@ -116,7 +116,7 @@ namespace TowerDefense.Scripts.Frontend.Level
                 GooglePlayManager.Get().UnlockAchievement(GPGSIds.achievement_top_defender);
             }
 
-            DataHolder.Get().UpdateWave(currentWave);
+            InGamePanelFunctions.Get().UpdateWave(currentWave);
 
             StartCoroutine(StartWave());
         }

@@ -31,22 +31,22 @@ namespace TowerDefense.Scripts.Frontend.Level
                 Health = 5;
             }
 
-            DataHolder.Get().UpdateCurrency(Currency);
-            DataHolder.Get().UpdateHealth(Health);
+            InGamePanelFunctions.Get().UpdateCurrency(Currency);
+            InGamePanelFunctions.Get().UpdateHealth(Health);
         }
 
         public void IncreaseCurrency(int amount)
         {
             Currency += amount;
             Shop.Get().CurrencyUI.text = Currency.ToString();
-            DataHolder.Get().UpdateCurrency(Currency);
+            InGamePanelFunctions.Get().UpdateCurrency(Currency);
         }
 
         public void UpdateCurrency(int newCurrency)
         {
             Currency = newCurrency;
             Shop.Get().CurrencyUI.text = Currency.ToString();
-            DataHolder.Get().UpdateCurrency(Currency);
+            InGamePanelFunctions.Get().UpdateCurrency(Currency);
         }
 
         public void TogglePause(bool toggle)
@@ -58,7 +58,7 @@ namespace TowerDefense.Scripts.Frontend.Level
         {
             Health -= damage;
 
-            DataHolder.Get().UpdateHealth(Health);
+            InGamePanelFunctions.Get().UpdateHealth(Health);
 
             if (Health <= 0)
             {

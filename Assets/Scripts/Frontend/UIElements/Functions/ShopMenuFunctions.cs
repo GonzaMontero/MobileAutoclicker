@@ -6,7 +6,7 @@ using TMPro;
 using TowerDefense.Scripts.Backend.PlayerSaves;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Localization;
-
+using TowerDefense.Scripts.Utils.Managers;
 using UnityEngine;
 
 namespace TowerDefense.Scripts.Frontend.UIElements
@@ -42,6 +42,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             PlayerDataBridge.Get().GetPlayerData().PlayerGems = newCurrency;
             PlayerDataBridge.Get().GetPlayerData().MatchStartHealth += 3;
             GemsText.text = Loc.ReplaceKey("key_gems") + " " + PlayerDataBridge.Get().GetPlayerData().PlayerGems;
+
+            HealthText.text = Loc.ReplaceKey("key_health") + (' ') + PlayerDataBridge.Get().GetPlayerData().MatchStartHealth;
         }
 
         public void UpgradeGold()
@@ -53,6 +55,13 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             PlayerDataBridge.Get().GetPlayerData().PlayerGems = newCurrency;
             PlayerDataBridge.Get().GetPlayerData().MatchStartGold += 25;
             GemsText.text = Loc.ReplaceKey("key_gems") + " " + PlayerDataBridge.Get().GetPlayerData().PlayerGems;
+
+            GoldText.text = Loc.ReplaceKey("key_gold") + (' ') + PlayerDataBridge.Get().GetPlayerData().MatchStartGold;
+        }
+
+        public void WatchAdEarnGems()
+        {
+            AdManager.Get().ShowRevardAd();            
         }
     }
 }

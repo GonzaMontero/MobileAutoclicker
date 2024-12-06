@@ -3733,7 +3733,6 @@ GameObject:
   - component: {fileID: 526308193}
   - component: {fileID: 526308195}
   - component: {fileID: 526308194}
-  - component: {fileID: 526308196}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -3801,21 +3800,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526308192}
   m_CullTransparentMesh: 1
---- !u!114 &526308196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526308192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dfa52de8e208b14a98363c437918124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrencyText: {fileID: 1281123372}
-  HealthText: {fileID: 59224385}
-  WaveText: {fileID: 224510331}
 --- !u!1001 &531177696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5520,6 +5504,7 @@ GameObject:
   - component: {fileID: 816931786}
   - component: {fileID: 816931788}
   - component: {fileID: 816931787}
+  - component: {fileID: 816931789}
   m_Layer: 0
   m_Name: Shop Text
   m_TagString: Untagged
@@ -5643,6 +5628,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816931785}
   m_CullTransparentMesh: 1
+--- !u!114 &816931789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816931785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa122d0882f8bbd4d8a85c448b0118e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: key_shop
 --- !u!1001 &846126265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7467,6 +7465,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndGamePanel: {fileID: 723980594}
   GemsEarnedText: {fileID: 1707826405}
+  CurrencyText: {fileID: 1281123372}
+  HealthText: {fileID: 59224385}
+  WaveText: {fileID: 224510331}
+  shareButton: {fileID: 1034692990}
 --- !u!1001 &1058906731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8519,12 +8521,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerPrefabs:
-  - Name: Basic Tower
+  - Name: key_baseTower
     Cost: 50
     TowerID: 0
     Prefab: {fileID: 531557256025839460, guid: ede984d628497b7499fe5ab1b81a9635, type: 3}
     ShopImage: {fileID: 1230118947, guid: 6f8b8ce34c61e784099ba1785e96f742, type: 3}
-  - Name: Advanced Tower
+  - Name: key_advancedTower
     Cost: 100
     TowerID: 1
     Prefab: {fileID: 531557256025839460, guid: a401321e883138645a9b233e093ac951, type: 3}

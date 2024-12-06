@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TowerDefense.Scripts.Backend.PlayerSaves;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -82,7 +83,7 @@ namespace TowerDefense.Scripts.Utils.Managers
         {
             if(placementId.Equals(IDRewardAddSelected) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
-                //Recompensa
+                PlayerDataBridge.Get().GetPlayerData().PlayerGems += 5;
             }
         }
 
