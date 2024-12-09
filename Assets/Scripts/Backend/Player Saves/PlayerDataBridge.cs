@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Localization;
 using System;
+using UnityEngine.Events;
 
 namespace TowerDefense.Scripts.Backend.PlayerSaves
 {
@@ -12,6 +13,8 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         private PlayerData _playerData;
 
         private string _filePath;
+
+        public static UnityEvent OnGemsGained;
 
         public override void Awake()
         {
@@ -22,6 +25,8 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
             _playerData = LogIn();
 
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
+
+            OnGemsGained = new UnityEvent();
         }
 
         public override void OnDestroy()
@@ -42,6 +47,12 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         public void SetVolume(float volume)
         {
             _playerData.CurrentVolume = volume;
+        }
+
+        public void GainGems(int gems)
+        {
+            _playerData.PlayerGems += gems;
+            OnGemsGained.Invoke();
         }
 
         public void LoadGame()

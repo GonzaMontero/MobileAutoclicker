@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TowerDefense.Scripts.Backend.PlayerSaves;
 using TowerDefense.Scripts.Frontend.UIElements;
 using TowerDefense.Scripts.Utils;
+using TowerDefense.Scripts.Utils.Managers;
 using UnityEngine;
 
 namespace TowerDefense.Scripts.Frontend.Level
@@ -67,6 +68,8 @@ namespace TowerDefense.Scripts.Frontend.Level
                 EnemyManager.Get().GameEnded();
 
                 InGamePanelFunctions.Get().GameEnd(EnemyManager.Get().GetCurrentWave());
+
+                AdManager.Get().ShowForcedAdd();
 
 #if UNITY_EDITOR
                 Debug.Log("You Lost!");

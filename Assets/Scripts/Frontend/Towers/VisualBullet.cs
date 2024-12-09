@@ -45,11 +45,17 @@ namespace TowerDefense.Scripts.Frontend.Towers
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            other.gameObject.GetComponent<EnemyMovement>().TakeDamage(BulletDamage);
+            if(!other.gameObject.transform == target)
+            {
+                return;
+            }
+            else
+            {
+                other.gameObject.GetComponent<EnemyMovement>().TakeDamage(BulletDamage);
+                target = null;
 
-            target = null;
-
-            ObjectPooler.Get().DisableItem(1, this.gameObject);
+                ObjectPooler.Get().DisableItem(1, this.gameObject);
+            }
         }
     }
 }

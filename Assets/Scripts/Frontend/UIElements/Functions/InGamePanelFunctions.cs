@@ -37,7 +37,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
 
             GemsEarnedText.text = "You have earned " + totalWaves.ToString() + " gems";
 
-            PlayerDataBridge.Get().GetPlayerData().PlayerGems += totalWaves;
+            PlayerDataBridge.Get().GainGems(totalWaves);
 
             if(!FacebookManager.Get().IsLoggedIn())
             {

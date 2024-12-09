@@ -12,11 +12,11 @@ namespace TowerDefense.Scripts.Utils.Managers
         public ADItem IOSItem;
         public ADItem AndroidItem;
 
+        public bool TestMode = false;
+
         private string IDSelected;
         private string IDRewardAddSelected;
         private string IDForcedAddSelected;
-
-        public bool TestMode = false;
 
         public override void Awake()
         {
@@ -83,7 +83,8 @@ namespace TowerDefense.Scripts.Utils.Managers
         {
             if(placementId.Equals(IDRewardAddSelected) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
-                PlayerDataBridge.Get().GetPlayerData().PlayerGems += 5;
+                if(placementId == IDRewardAddSelected)
+                    PlayerDataBridge.Get().GainGems(5);
             }
         }
 

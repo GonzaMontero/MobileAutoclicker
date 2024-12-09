@@ -20,7 +20,7 @@ namespace TowerDefense.Scripts.Frontend.Level
         public int BaseEnemies = 8;
         public float EnemiesPerSeconds = 0.5f;
         public float TimeBetweenWaves = 5f;
-        public float MaxEnemiesPerSecond = 10f;
+        public float MaxEnemiesPerSecond = 20f;
 
         [Header("Events")]
         public static UnityEvent OnEnemyDestroy;
@@ -29,7 +29,7 @@ namespace TowerDefense.Scripts.Frontend.Level
         private int enemiesAlive;
         private int enemiesLeftToSpawn;
         private float timeSinceLastSpawn;
-        private float epsScalar;
+        private float eps; // enemies per second
         private float DifficultyScalar = 0.75f;
         private bool isSpawning = false;
 
@@ -54,7 +54,7 @@ namespace TowerDefense.Scripts.Frontend.Level
 
             timeSinceLastSpawn += Time.deltaTime;
 
-            if(timeSinceLastSpawn >= 1 / EnemiesPerSeconds && enemiesLeftToSpawn > 0)
+            if(timeSinceLastSpawn >= (1 / eps) && enemiesLeftToSpawn > 0)
             {
                 SpawnEnemy();
 
@@ -64,7 +64,7 @@ namespace TowerDefense.Scripts.Frontend.Level
                 timeSinceLastSpawn = 0;
             }
 
-            if(enemiesAlive ==0 && enemiesLeftToSpawn ==0)
+            if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
             {
                 EndWave();
             }
@@ -93,7 +93,7 @@ namespace TowerDefense.Scripts.Frontend.Level
 
             isSpawning = true;
             enemiesLeftToSpawn = EnemiesPerWave();
-            EnemiesPerSeconds = EnemiesPerSecond();
+            eps = EnemiesPerSecond();
         }
 
         private void EndWave()
@@ -128,7 +128,7 @@ namespace TowerDefense.Scripts.Frontend.Level
 
         private float EnemiesPerSecond()
         {
-            return Mathf.Clamp(Mathf.RoundToInt(EnemiesPerSeconds * Mathf.Pow(currentWave, epsScalar)), 0f, MaxEnemiesPerSecond);
+            return Mathf.Clamp(Mathf.RoundToInt(EnemiesPerSeconds * Mathf.Pow(currentWave, DifficultyScalar)), 0f, MaxEnemiesPerSecond);
         }
 
         private void EnemyDestroyed()

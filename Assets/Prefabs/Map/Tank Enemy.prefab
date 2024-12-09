@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisRigidBody: {fileID: 6012324272984478853}
   MoveSpeed: 0.25
+  BaseHealth: 5
   Health: 5
   Value: 1
   PoolID: 0

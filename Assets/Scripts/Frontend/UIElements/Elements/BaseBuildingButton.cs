@@ -19,7 +19,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
 
         public void SetData(string itemName, Sprite itemSprite, int id, int cost)
         {
-            ItemText.text = Loc.ReplaceKey(itemName);
+            ItemText.text = Loc.ReplaceKey(itemName) + " - " + cost.ToString();
             ItemImage.sprite = itemSprite;
             itemID = id;
             itemCost = cost;

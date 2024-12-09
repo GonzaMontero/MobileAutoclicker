@@ -48,6 +48,8 @@ namespace TowerDefense.Scripts.Backend.Facebook
                 Debug.Log("Facebook is Login!");
 #endif
                 string s = "client token" + FB.ClientToken + "User Id" + AccessToken.CurrentAccessToken.UserId + "token string" + AccessToken.CurrentAccessToken.TokenString;
+
+                Debug.Log(s);
             }
             else
             {
@@ -70,7 +72,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
         }
 
 
-        public void DisplayUsername(IResult result)
+        public string DisplayUsername(IResult result)
         {
             if (result.Error == null)
             {
@@ -78,12 +80,14 @@ namespace TowerDefense.Scripts.Backend.Facebook
 #if UNITY_EDITOR
                 Debug.Log("" + name);
 #endif
+                return name;
             }
             else
             {
 #if UNITY_EDITOR
                 Debug.Log(result.Error);
 #endif
+                return null;
             }
         }
 
@@ -145,7 +149,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookSharefeed(int waveReached)
         {
-            string url = "https:developers.facebook.com/docs/unity/reference/current/FB.ShareLink";
+            string url = "https://www.youtube.com";
             FB.ShareLink(
                 new Uri(url),
                 "Play Tower Defense: Outlast",
@@ -157,7 +161,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookShareMessage(string contentTitle, string contentContents)
         {
-            string url = "https:developers.facebook.com/docs/unity/reference/current/FB.ShareLink";
+            string url = "https://www.youtube.com";
             FB.ShareLink(
                 new Uri(url),
                 contentTitle,
