@@ -4,7 +4,6 @@ using UnityEngine;
 using TowerDefense.Scripts.Utils;
 using Facebook.Unity;
 using System;
-using UnityEngine.UI;
 
 namespace TowerDefense.Scripts.Backend.Facebook
 {
@@ -77,9 +76,9 @@ namespace TowerDefense.Scripts.Backend.Facebook
             if (result.Error == null)
             {
                 string name = "" + result.ResultDictionary["first_name"];
-#if UNITY_EDITOR
+
                 Debug.Log("" + name);
-#endif
+
                 return name;
             }
             else
@@ -112,6 +111,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
                 print(aToken.UserId);
 #endif
 
+                DisplayUsername(result);
 
                 foreach (string perm in aToken.Permissions)
                 {
@@ -149,7 +149,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookSharefeed(int waveReached)
         {
-            string url = "https://www.youtube.com";
+            string url = "https://play.google.com/store/apps/details?id=com.GM.Autoclicker";
             FB.ShareLink(
                 new Uri(url),
                 "Play Tower Defense: Outlast",
@@ -161,7 +161,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookShareMessage(string contentTitle, string contentContents)
         {
-            string url = "https://www.youtube.com";
+            string url = "https://play.google.com/store/apps/details?id=com.GM.Autoclicker";
             FB.ShareLink(
                 new Uri(url),
                 contentTitle,

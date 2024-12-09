@@ -52,7 +52,7 @@ MonoBehaviour:
   FiringPoint: {fileID: 2262662941976571507}
   Target: {fileID: 0}
   TargetingRange: 7
-  BulletsPerSecond: 2
+  BulletsPerSecond: 1
   Damage: 6
 --- !u!1 &5285124723517513599
 GameObject:
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1212916797
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1116577343, guid: 6f8b8ce34c61e784099ba1785e96f742, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

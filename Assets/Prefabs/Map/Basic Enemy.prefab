@@ -155,10 +155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisRigidBody: {fileID: 6012324272984478853}
   MoveSpeed: 2
+  BaseHealth: 1
   Health: 1
-  Value: 10
+  Value: 5
   PoolID: 0
-  Damage: 10
+  Damage: 1
 --- !u!58 &3433577941410006473
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ namespace TowerDefense.Scripts.Frontend.Enemies
         private void OnEnable()
         {
             isDead = false;
+            target = MapManager.Get().PathNodes[pathIndex];
         }
 
         private void Update()
