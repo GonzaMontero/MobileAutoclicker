@@ -1,11 +1,8 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-
 using TMPro;
 
 using TowerDefense.Scripts.Backend.Facebook;
 using TowerDefense.Scripts.Backend.PlayerSaves;
+using TowerDefense.Scripts.Frontend.Level;
 using TowerDefense.Scripts.Utils;
 using TowerDefense.Scripts.Utils.Localization;
 using TowerDefense.Scripts.Utils.Managers;
@@ -35,7 +32,7 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         {
             totalWaves = waveReached;
 
-            GemsEarnedText.text = "You have earned " + totalWaves.ToString() + " gems";
+            GemsEarnedText.text = Loc.ReplaceKey("key_gained") + " " + totalWaves.ToString() + " " + Loc.ReplaceKey("key_gems");
 
             PlayerDataBridge.Get().GainGems(totalWaves);
 
@@ -47,9 +44,15 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             EndGamePanel.SetActive(true);
         }
 
-        public void ReturnToMenu()
+        public void EndGame()
         {
-            ASyncLoaderManager.Get().InitiateSceneLoad("Main Menu");
+            MapManager.Get().TogglePause(true);
+
+            EnemyManager.Get().GameEnded();
+
+            InGamePanelFunctions.Get().GameEnd(EnemyManager.Get().GetCurrentWave());
+
+            AdManager.Get().ShowForcedAdd();
         }
 
         public void ShareFacebook()
@@ -70,6 +73,11 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         public void UpdateWave(int newWave)
         {
             WaveText.text = Loc.ReplaceKey("key_wave") + "- " + newWave.ToString();
+        }
+
+        public void ReturnToMenu()
+        {
+            ASyncLoaderManager.Get().InitiateSceneLoad("Main Menu");
         }
     }
 }

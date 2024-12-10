@@ -46,9 +46,11 @@ namespace TowerDefense.Scripts.Backend.Facebook
 #if UNITY_EDITOR
                 Debug.Log("Facebook is Login!");
 #endif
-                string s = "client token" + FB.ClientToken + "User Id" + AccessToken.CurrentAccessToken.UserId + "token string" + AccessToken.CurrentAccessToken.TokenString;
+                string s = "client token" + FB.ClientToken + "User Id" + AccessToken.CurrentAccessToken.UserId + "token string" + AccessToken.CurrentAccessToken.TokenString;               
 
                 Debug.Log(s);
+
+                FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             }
             else
             {
@@ -71,22 +73,18 @@ namespace TowerDefense.Scripts.Backend.Facebook
         }
 
 
-        public string DisplayUsername(IResult result)
+        void DisplayUsername(IResult result)
         {
             if (result.Error == null)
             {
                 string name = "" + result.ResultDictionary["first_name"];
-
                 Debug.Log("" + name);
-
-                return name;
             }
             else
             {
 #if UNITY_EDITOR
                 Debug.Log(result.Error);
 #endif
-                return null;
             }
         }
 
@@ -149,7 +147,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookSharefeed(int waveReached)
         {
-            string url = "https://play.google.com/store/apps/details?id=com.GM.Autoclicker";
+            string url = "https://play.google.com/apps/testing/com.GM.Autoclicker";
             FB.ShareLink(
                 new Uri(url),
                 "Play Tower Defense: Outlast",
@@ -161,7 +159,8 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
         public void FacebookShareMessage(string contentTitle, string contentContents)
         {
-            string url = "https://play.google.com/store/apps/details?id=com.GM.Autoclicker";
+            string url = "https://play.google.com/apps/testing/com.GM.Autoclicker";
+
             FB.ShareLink(
                 new Uri(url),
                 contentTitle,
