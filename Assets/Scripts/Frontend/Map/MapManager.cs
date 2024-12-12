@@ -69,6 +69,8 @@ namespace TowerDefense.Scripts.Frontend.Level
 
                 InGamePanelFunctions.Get().GameEnd(EnemyManager.Get().GetCurrentWave());
 
+                GooglePlayManager.Get().RecordToLeaderboard(EnemyManager.Get().GetCurrentWave());
+
                 AdManager.Get().ShowForcedAdd();
 
 #if UNITY_EDITOR

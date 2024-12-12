@@ -55,5 +55,10 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             MainMenuPanel.SetActive(!toggle);
             PluginPanel.SetActive(toggle);
         }
+
+        public void ToggleLeaderBoard()
+        {
+            GooglePlayManager.Get().GenerateLeaderboard();
+        }
     }
 }

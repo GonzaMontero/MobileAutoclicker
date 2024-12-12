@@ -82,6 +82,7 @@ namespace TowerDefense.Scripts.Frontend.Enemies
         {
             ObjectPooler.Get().DisableItem(PoolID, this.gameObject);
             EnemyManager.OnEnemyDestroy.Invoke();
+            pathIndex = 0;
             MapManager.Get().DecreaseHealth(Damage);
         }
 
@@ -105,6 +106,11 @@ namespace TowerDefense.Scripts.Frontend.Enemies
         public bool GetIsDead()
         {
             return isDead;
+        }
+
+        public int GetPathIndex()
+        {
+            return pathIndex;
         }
     }
 }

@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using TowerDefense.Scripts.Utils;
+
 using Facebook.Unity;
+
 using System;
+
+using UnityEngine.Events;
 
 namespace TowerDefense.Scripts.Backend.Facebook
 {
     public class FacebookManager : MonoBehaviourSingleton<FacebookManager>
     {
+        public UnityEvent OnLoginSuccess;
+
         public override void Awake()
         {
             base.Awake();
+
+            OnLoginSuccess = new UnityEvent();
+
 
             FB.Init(SetInit, onHidenUnity);
 
@@ -77,8 +87,6 @@ namespace TowerDefense.Scripts.Backend.Facebook
         {
             if (result.Error == null)
             {
-                string name = "" + result.ResultDictionary["first_name"];
-                Debug.Log("" + name);
             }
             else
             {
@@ -92,9 +100,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
         {
             List<string> permissions = new List<string>();
             permissions.Add("public_profile");
-            //permissions.Add("user_friends");
-            FB.LogInWithReadPermissions(permissions, AuthCallBack);
-
+            FB.LogInWithReadPermissions(permissions, AuthCallBack);           
         }
 
         void AuthCallBack(IResult result)
@@ -115,6 +121,8 @@ namespace TowerDefense.Scripts.Backend.Facebook
                 {
                     print(perm);
                 }
+
+                OnLoginSuccess.Invoke();
             }
             else
             {

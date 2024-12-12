@@ -52,7 +52,7 @@ MonoBehaviour:
   FiringPoint: {fileID: 2262662941976571507}
   Target: {fileID: 0}
   TargetingRange: 5
-  BulletsPerSecond: 0.5
+  BulletsPerSecond: 0.85
   Damage: 1
 --- !u!1 &5285124723517513599
 GameObject:

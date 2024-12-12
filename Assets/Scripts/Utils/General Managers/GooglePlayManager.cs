@@ -86,6 +86,22 @@ namespace TowerDefense.Scripts.Utils.Managers
             });
         }
 
+        public void GenerateLeaderboard()
+        {
+            if (!PlayGamesPlatform.Instance.IsAuthenticated())
+                PlayGamesPlatform.Instance.Authenticate(ProcessAuthentitacion);
+
+            PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_scores);
+        }
+
+        public void RecordToLeaderboard(int wave)
+        {
+            if (!PlayGamesPlatform.Instance.IsAuthenticated())
+                PlayGamesPlatform.Instance.Authenticate(ProcessAuthentitacion);
+
+            PlayGamesPlatform.Instance.ReportScore(wave, GPGSIds.leaderboard_scores, OnLeaderboardSuccess);
+        }
+
         void OnUnityLogIn(bool success)
         {
 #if UNITY_EDITOR || PLATFORM_STANDALONE
@@ -116,6 +132,14 @@ namespace TowerDefense.Scripts.Utils.Managers
             {
                 Debug.Log("GPGS - Failed to login: " + signInStatus);
             }
+        }
+
+        void OnLeaderboardSuccess(bool success)
+        {
+            if (success)
+                Debug.Log("Leaderboard success");
+            else
+                Debug.Log("Leaderboard not success");
         }
 #endif
 

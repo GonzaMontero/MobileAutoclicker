@@ -157,7 +157,7 @@ MonoBehaviour:
   MoveSpeed: 2
   BaseHealth: 1
   Health: 1
-  Value: 5
+  Value: 15
   PoolID: 0
   Damage: 1
 --- !u!58 &3433577941410006473

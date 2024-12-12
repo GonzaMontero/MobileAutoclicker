@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TowerDefense.Scripts.Frontend.Level;
+using TowerDefense.Scripts.Frontend.Enemies;
 
 namespace TowerDefense.Scripts.Frontend.Towers
 {
@@ -57,9 +58,21 @@ namespace TowerDefense.Scripts.Frontend.Towers
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, TargetingRange,
                 (Vector2)transform.position, 0f, EnemyMask);
 
+            int currentPathIndex = -1;
+            int largestPathItem = 0;
+
             if (hits.Length > 0)
             {
-                Target = hits[0].transform;
+                for (short i = 0; i < hits.Length; i++)
+                {
+                    if (hits[i].collider.gameObject.GetComponent<EnemyMovement>().GetPathIndex() > currentPathIndex)
+                    {
+                        currentPathIndex = hits[i].collider.gameObject.GetComponent<EnemyMovement>().GetPathIndex();
+                        largestPathItem = i;
+                    }
+                }
+
+                Target = hits[largestPathItem].transform;
             }
         }
 
