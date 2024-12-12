@@ -51,6 +51,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             GemsText.text = Loc.ReplaceKey("key_gems") + " " + PlayerDataBridge.Get().GetPlayerData().PlayerGems;
 
             HealthText.text = Loc.ReplaceKey("key_health") + (' ') + PlayerDataBridge.Get().GetPlayerData().MatchStartHealth;
+
+            PlayerDataBridge.Get().QuickSaveData();
         }
 
         public void UpgradeGold()
@@ -64,6 +66,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             GemsText.text = Loc.ReplaceKey("key_gems") + " " + PlayerDataBridge.Get().GetPlayerData().PlayerGems;
 
             GoldText.text = Loc.ReplaceKey("key_gold") + (' ') + PlayerDataBridge.Get().GetPlayerData().MatchStartGold;
+
+            PlayerDataBridge.Get().QuickSaveData();
         }
 
         public void UpdateGemsText()

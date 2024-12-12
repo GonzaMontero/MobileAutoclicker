@@ -44,6 +44,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             {
                 Loc.CurrentLanguage = (Loc.Language)LanguageDropdown.value;
                 CommandManager.Get().OnSettingsChanged.Invoke();
+
+                PlayerDataBridge.Get().QuickSaveData();
             });
 
             LanguageDropdown.value = (int)Loc.CurrentLanguage;

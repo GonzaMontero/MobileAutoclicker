@@ -19,10 +19,15 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         public override void Awake()
         {
             base.Awake();
+        }
 
-            _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+        private void Start()
+        {
+            _filePath = Path.Combine(Application.persistentDataPath, "pData.json");
             _filePath.Replace("\\", "/");
             _playerData = LogIn();
+
+            Debug.Log("Gems " + _playerData.PlayerGems);
 
             Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
 
@@ -53,22 +58,8 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         {
             _playerData.PlayerGems += gems;
             OnGemsGained.Invoke();
-        }
 
-        public void LoadGame()
-        {
-            _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
-            _filePath.Replace("\\", "/");
-            _playerData = LogIn();
-
-            Loc.CurrentLanguage = (Loc.Language)_playerData.CurrentLanguage;
-        }
-
-        public void OverrideSave(PlayerData newPlayerData)
-        {
-            _playerData = newPlayerData;
-
-            SavePlayerData(_playerData);
+            PlayerDataBridge.Get().QuickSaveData();
         }
 
         #endregion
@@ -80,12 +71,20 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
             SavePlayerData(playerData);
         }
 
+        public void QuickSaveData()
+        {
+            _playerData.CurrentLanguage = (int)Loc.CurrentLanguage;
+
+            SavePlayerData(_playerData);
+        }
+
         private void SavePlayerData(PlayerData playerData)
         {
-            string jsonData = JsonConvert.SerializeObject(playerData);
-            string encryptedData = EncryptionUtility.Encrypt(jsonData);
+            string jsonDat = JsonUtility.ToJson(playerData);
 
-            File.WriteAllText(_filePath, encryptedData);
+            File.WriteAllText(_filePath, jsonDat);
+
+            Debug.Log(_filePath);
         }
 
         public PlayerData LogIn()
@@ -99,11 +98,16 @@ namespace TowerDefense.Scripts.Backend.PlayerSaves
         {
             if (File.Exists(_filePath))
             {
-                string encrypredData = File.ReadAllText(_filePath);
-                string jsonData = EncryptionUtility.Decrypt(encrypredData);
+                Debug.Log("File Exists");
 
-                return JsonConvert.DeserializeObject<PlayerData>(jsonData);
+                string jsonData = File.ReadAllText(_filePath);
+
+                return JsonUtility.FromJson<PlayerData>(jsonData);
+
+                //return JsonConvert.DeserializeObject<PlayerData>(jsonData);
             }
+
+            Debug.Log("File Does not exist");
 
             PlayerData startingData = new PlayerData();
 
