@@ -87,6 +87,8 @@ namespace TowerDefense.Scripts.Backend.Facebook
         {
             if (result.Error == null)
             {
+                string name = "" + result.ResultDictionary["first_name"];
+                Debug.Log("Facebook user " + name);
             }
             else
             {
