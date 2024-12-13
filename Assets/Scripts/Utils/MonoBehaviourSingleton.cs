@@ -32,6 +32,10 @@ namespace TowerDefense.Scripts.Utils
                 Debug.Log(instance.name + " was destroyed successfully");
 #endif
             }
+            else
+            {
+                instance = null;
+            }
         }
     }
 }

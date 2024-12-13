@@ -11,7 +11,8 @@ namespace TowerDefense.Scripts.Frontend.UIElements
 
         private void Start()
         {
-            FacebookManager.Get().OnLoginSuccess.AddListener(UpdateText);
+            FacebookManager.Get().OnLoginSuccess.AddListener(UpdatePositiveText);
+            FacebookManager.Get().OnLogoutSuccess.AddListener(UpdateNegativeText);
 
             if (FacebookManager.Get().IsLoggedIn())
                 FacebookNameText.text = Loc.ReplaceKey("key_isLogged");
@@ -20,17 +21,11 @@ namespace TowerDefense.Scripts.Frontend.UIElements
         public void LogIn()
         {
             FacebookManager.Get().Facebook_LogIn();
-
-            if (FacebookManager.Get().IsLoggedIn())
-                FacebookNameText.text = Loc.ReplaceKey("key_isLogged");
         }
 
         public void LogOut()
         {
             FacebookManager.Get().Facebook_LogOut();
-
-            if (!FacebookManager.Get().IsLoggedIn())
-                FacebookNameText.text = Loc.ReplaceKey("key_notLogged");
         }
 
         public void ShareGame()
@@ -38,9 +33,14 @@ namespace TowerDefense.Scripts.Frontend.UIElements
             FacebookManager.Get().FacebookShareMessage("Play Tower Defense - Survival!", "Currently on Closed Beta");
         }
 
-        public void UpdateText()
+        public void UpdatePositiveText()
         {
             FacebookNameText.text = Loc.ReplaceKey("key_isLogged");
+        }
+
+        public void UpdateNegativeText()
+        {
+            FacebookNameText.text = Loc.ReplaceKey("key_notLogged");
         }
     }
 }

@@ -15,6 +15,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
     public class FacebookManager : MonoBehaviourSingleton<FacebookManager>
     {
         public UnityEvent OnLoginSuccess;
+        public UnityEvent OnLogoutSuccess;
 
         public override void Awake()
         {
@@ -22,6 +23,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 
             OnLoginSuccess = new UnityEvent();
 
+            OnLogoutSuccess = new UnityEvent();
 
             FB.Init(SetInit, onHidenUnity);
 
@@ -153,6 +155,7 @@ namespace TowerDefense.Scripts.Backend.Facebook
 #if UNITY_EDITOR
             print("Logout Successful");
 #endif
+            OnLogoutSuccess.Invoke();
         }
 
         public void FacebookSharefeed(int waveReached)
